@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/images/header_personal_journal.jpg" alt="MY Journal: O Jornal Pessoal Impresso e Digital" width="100%">
+  <img src="assets/images/header_personal_journal.jpg" alt="MY Personal Journal: O Jornal Pessoal Impresso e Digital" width="100%">
 </p>
 
-# 📰 MY Journal
+# 📰 MY Personal Journal
 
 
 > **Seu jornal impresso semanal com design editorial do *The New York Times*, inteligência multi-agente e sincronização profunda com a sua vida.**
@@ -24,7 +24,7 @@ Abaixo estão capturas reais geradas pelo motor gráfico e pela redação de IA:
 O jornal abre com um diagnóstico de ritmo da semana integrado aos seus compromissos, fotografia tratada em alto contraste P&B e manchetes globais.
 
 <p align="center">
-  <img src="assets/images/preview_page1_frontpage.png" alt="Capa do MY Journal" width="850">
+  <img src="assets/images/preview_page1_frontpage.png" alt="Capa do MY Personal Journal" width="850">
 </p>
 
 ---
@@ -225,7 +225,7 @@ OPENAI_API_KEY="sua_chave_openai_aqui"
 
 # Personalização
 OWNER_NAME="Mauricio"
-JOURNAL_TITLE="MY Journal"
+JOURNAL_TITLE="MY Personal Journal"
 
 # Calendários (URLs .ics públicas ou secretas)
 CALENDAR_URL_PESSOAL="https://calendar.google.com/calendar/ical/seu_pessoal/basic.ics"

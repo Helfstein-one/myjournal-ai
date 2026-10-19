@@ -6,6 +6,16 @@ O formato segue as diretrizes do [Keep a Changelog](https://keepachangelog.com/p
 
 ---
 
+## [2.2.0] - 2026-10-19
+
+### 🏷️ Rebranding Editorial: MY Personal Journal
+- **Atualização do Cabeçalho & Masthead Oficial:**
+  - Padronização do nome do jornal para **`MY Personal Journal`** em todas as camadas de configuração, modelos e templates.
+  - Atualização dos metadados globais em [config.py](file:///Users/mauriciohelfstein/Downloads/myjournal-ai/myjournal/config.py), `.env.example` e documentação [README.md](file:///Users/mauriciohelfstein/Downloads/myjournal-ai/README.md).
+  - Regeneração integral da edição e atualização de todos os assets visuais e screenshots da capa e cadernos internos.
+
+---
+
 ## [2.1.0] - 2026-10-19
 
 ### 🌐 Expansão de Fontes Oficiais & Imagens Reais (Brasil & Mundo)
