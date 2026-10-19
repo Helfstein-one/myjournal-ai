@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/images/header_personal_journal.jpg" alt="MyJournal AI — The Personal Dispatch: O Jornal Pessoal Impresso e Digital" width="100%">
+</p>
+
 # 📰 MyJournal AI — The Personal Dispatch
 
 > **Seu jornal impresso semanal com design editorial do *The New York Times*, inteligência multi-agente e sincronização profunda com a sua vida.**
