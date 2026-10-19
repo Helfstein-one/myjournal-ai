@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ data.metadata.title }} - {{ data.metadata.date_str }}</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PÁGINA 1: CAPA (FRONT PAGE) -->
+    <div class="page" id="page-1">
+        <div class="ears-bar">
+            <div class="ear-box">
+                <strong>{{ data.metadata.weather }}</strong><br>
+                {{ data.metadata.edition }}
+            </div>
+            <div class="ear-box" style="text-align: center;">
+                <em>“Todas as notícias dignas de registro pessoal e intelectual”</em>
+            </div>
+            <div class="ear-box" style="text-align: right;">
+                <strong>{{ data.metadata.date_str }}</strong><br>
+                {{ data.metadata.volume }}
+            </div>
+        </div>
+
+        <div class="masthead-container">
+            <div class="main-masthead">{{ data.metadata.title }}</div>
+            <div class="masthead-subtitle">{{ data.metadata.subtitle }}</div>
+            <div class="info-bar">
+                <span>SEMANA DE {{ data.metadata.date_str }}</span>
+                <span>EDIÇÃO DOMINICAL DE LUXO • 14 CADERNOS TEMÁTICOS</span>
+                <span>SÃO PAULO, BRASIL</span>
+            </div>
+        </div>
+
+        <div class="lead-headline">{{ data.front_page.lead_headline }}</div>
+        <div class="lead-subdeck">{{ data.front_page.lead_subdeck }}</div>
+
+        {% if images and images.front_page %}
+        <figure class="newspaper-figure hero-figure">
+            <img src="{{ images.front_page.url }}" alt="{{ images.front_page.caption }}">
+            <figcaption>
+                <span class="caption-text">{{ images.front_page.caption }}</span>
+                <span class="photo-credit">{{ images.front_page.credit }}</span>
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns-2" style="margin-bottom: 12px; flex: 1;">
+            <p class="drop-cap">{{ data.front_page.lead_article }}</p>
+        </div>
+
+        <!-- Índice da Edição Dominical de 14 Páginas -->
+        <div style="border-top: 2px solid #222; border-bottom: 1px solid #222; padding: 6px 0; margin-top: auto; margin-bottom: 6px;">
+            <div style="font-family: 'PT Sans'; font-size: 7.2pt; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px;">
+                SUMÁRIO DOS 14 CADERNOS DESTA EDIÇÃO
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; font-size: 6.8pt; color: #333;">
+                <div><strong>Pág. 1:</strong> Capa & Editorial</div>
+                <div><strong>Pág. 2:</strong> Estratégia de Vida</div>
+                <div><strong>Pág. 3:</strong> Agenda Dia a Dia</div>
+                <div><strong>Pág. 4:</strong> Política Nacional</div>
+                <div><strong>Pág. 5:</strong> Radar Internacional</div>
+                <div><strong>Pág. 6:</strong> Tecnologia & IA</div>
+                <div><strong>Pág. 7:</strong> Op-Ed (Opinião)</div>
+                <div><strong>Pág. 8:</strong> Política de São Paulo</div>
+                <div><strong>Pág. 9:</strong> Economia Nacional</div>
+                <div><strong>Pág. 10:</strong> Geopolítica Global</div>
+                <div><strong>Pág. 11:</strong> Guia Metrópole SP</div>
+                <div><strong>Pág. 12:</strong> Concursos & Ofícios</div>
+                <div><strong>Pág. 13:</strong> Crossword (NYT)</div>
+                <div><strong>Pág. 14:</strong> Caça-Palavras</div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 1 de 14 • Capa & Abertura</span>
+            <span>Segue na pág. 2: Estratégia de Vida</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: VIDA PESSOAL & ESTRATÉGIA DE RITMO -->
+    <div class="page" id="page-2">
+        <div class="page-header">
+            <span>Caderno de Vida & Estratégia</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 2</span>
+        </div>
+
+        <div class="section-title">O RITMO DA SEMANA: DIAGNÓSTICO & CADÊNCIA</div>
+        <div class="byline">Por Redação de Planejamento & Equilíbrio Pessoal</div>
+
+        <div class="columns-2" style="margin-bottom: 14px;">
+            <p class="drop-cap">
+                {{ data.front_page.itinerary_summary }}
+            </p>
+            <p>
+                A conciliação de compromissos técnicos de alta exigência com práticas de refinamento pessoal exige clareza de prioridades.
+                Ao mapear com antecedência os picos de energia requeridos nas sessões de estudo, trabalho e criação, o leitor transforma
+                a sobrecarga em uma sequência deliberada de atos com significado e propósito.
+            </p>
+        </div>
+
+        <div class="pull-quote">
+            “Não é a ausência de compromissos que define a serenidade, mas a exatidão com que escolhemos onde depositar a atenção.”
+        </div>
+
+        <div style="border-top: 1px solid #111; padding-top: 8px; margin-top: auto;">
+            <div style="font-family: 'PT Sans'; font-size: 8pt; font-weight: bold; text-transform: uppercase; margin-bottom: 4px;">
+                PRINCÍPIOS PARA A SEMANA
+            </div>
+            <div class="columns-3" style="font-size: 7.5pt; color: #333;">
+                <div>
+                    <strong>1. Janelas de Profundidade:</strong> Reserve as manhãs para tarefas que exigem esforço cognitivo máximo antes que o ruído externo interfira.
+                </div>
+                <div>
+                    <strong>2. Pausas Restauradoras:</strong> Não negligencie as noites dedicadas ao piano e ao estudo de línguas como pontes de transição emocional.
+                </div>
+                <div>
+                    <strong>3. O Ritual da Cidade:</strong> Permita-se vivenciar a capital no fim de semana com o olhar de um viajante atento e curioso.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 2 de 14 • Estratégia & Vida Pessoal</span>
+            <span>Segue na pág. 3: Agenda Detalhada</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: AGENDA SEMANAL DIA A DIA -->
+    <div class="page" id="page-3">
+        <div class="page-header">
+            <span>Caderno de Agenda & Compromissos</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 3</span>
+        </div>
+
+        <div class="section-title">ITINERÁRIO DETALHADO • GOOGLE AGENDA</div>
+        <div class="byline">Sincronizado via Calendário Pessoal & Profissional</div>
+
+        {% if agenda_days %}
+        <div class="agenda-days-structured">
+            {% for day in agenda_days %}
+            <div class="agenda-day-block">
+                <div class="agenda-day-header-meta">
+                    <span class="agenda-day-title">{{ day.date_str }}</span>
+                    <span class="agenda-demand-badge">{{ day.cognitive_demand }}</span>
+                </div>
+                <div class="agenda-day-advice">💡 {{ day.daily_advice }}</div>
+                <div class="agenda-events-list">
+                    {% for ev in day.events %}
+                    <div class="agenda-event-card {% if ev.category == 'Trabalho' %}card-work{% else %}card-personal{% endif %}">
+                        <div class="event-meta-row">
+                            <span class="event-time-badge">{{ ev.time_str }}</span>
+                            <span class="event-focus-tag">{{ ev.focus_tag }}</span>
+                        </div>
+                        <div class="event-card-title">{{ ev.title }}</div>
+                        <div class="event-ai-summary">{{ ev.executive_summary }}</div>
+                        {% if ev.location %}
+                        <div class="event-location-text">📍 {{ ev.location }}</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="agenda-days-grid" style="flex: 1;">
+            {% for ev in events %}
+            <div class="agenda-day-card">
+                <div class="agenda-day-header">
+                    <span>{{ ev.formatted_time }}</span>
+                    <span class="event-badge {% if ev.category == 'Trabalho' %}badge-work{% else %}badge-personal{% endif %}">
+                        {{ ev.category }}
+                    </span>
+                </div>
+                <div style="font-weight: 700; font-size: 8.8pt; margin-bottom: 2px;">{{ ev.title }}</div>
+                {% if ev.location %}
+                <div style="font-size: 7.2pt; color: #666;">📍 {{ ev.location }}</div>
+                {% endif %}
+                {% if ev.description %}
+                <div style="font-size: 7.2pt; color: #444; margin-top: 2px;">{{ ev.description }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 3 de 14 • Agenda Dia a Dia</span>
+            <span>Segue na pág. 4: Política Nacional</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: POLÍTICA NACIONAL & INSTITUIÇÕES -->
+    <div class="page" id="page-4">
+        <div class="page-header">
+            <span>Caderno de Política & Instituições</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 4</span>
+        </div>
+
+        <div class="section-title">POLÍTICA, REFORMAS & ESTABILIDADE INSTITUCIONAL</div>
+
+        <div style="margin-bottom: 6px;">
+            <h1 style="font-size: 18pt; font-weight: 800; margin-bottom: 3px;">{{ data.politics_world.headline }}</h1>
+            <div class="article-subdeck">{{ data.politics_world.subdeck }}</div>
+            {% if data.politics_world.provenance %}
+            <div class="provenance-badge {{ data.politics_world.provenance.type }}">
+                {% if data.politics_world.provenance.type == 'news' %}🌐{% elif data.politics_world.provenance.type == 'ai_editorial' %}🤖{% else %}✍️{% endif %}
+                Fonte: {{ data.politics_world.provenance.source_name }} • Por {{ data.politics_world.provenance.author_name }}
+                {% if data.politics_world.provenance.url %}<a href="{{ data.politics_world.provenance.url }}" target="_blank">[Matéria Original ↗]</a>{% endif %}
+            </div>
+            {% else %}
+            <div class="byline">Por Correspondente de Assuntos Institucionais em Brasília</div>
+            {% endif %}
+        </div>
+
+        <div class="columns-2" style="flex: 1;">
+            <p class="drop-cap">{{ data.politics_world.main_article }}</p>
+
+            {% if data.politics_world.context_box %}
+            <div class="context-box">
+                <div class="context-box-title">✦ {{ data.politics_world.context_box.title }}</div>
+                <ul>
+                    {% for pt in data.politics_world.context_box.points %}
+                    <li>{{ pt }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if data.politics_world.recommended_readings %}
+            <div class="readings-box">
+                <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                {% for r in data.politics_world.recommended_readings %}
+                <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 4 de 14 • Política Nacional</span>
+            <span>Segue na pág. 5: Radar Internacional</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 5: RADAR INTERNACIONAL & GEOPOLÍTICA -->
+    <div class="page" id="page-5">
+        <div class="page-header">
+            <span>Caderno Internacional</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 5</span>
+        </div>
+
+        <div class="section-title">PANORAMA GLOBAL, DIPLOMACIA & MERCADOS</div>
+
+        {% if images and images.international %}
+        <figure class="newspaper-figure" style="margin-bottom: 8px;">
+            <img src="{{ images.international.url }}" alt="{{ images.international.caption }}" style="max-height: 175px;">
+            <figcaption>
+                <span class="caption-text">{{ images.international.caption }}</span>
+                <span class="photo-credit">{{ images.international.credit }}</span>
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns-3" style="margin-bottom: 10px;">
+            {% for brief in data.politics_world.briefs %}
+            <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 6px;">
+                <h4 style="font-size: 8.8pt; font-weight: 700; margin-bottom: 2px;">{{ brief.title }}</h4>
+                <p style="font-size: 7.8pt; color: #333;">{{ brief.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if news_items %}
+        <div style="border-top: 2px solid #222; padding-top: 6px; flex: 1;">
+            <div class="section-title" style="font-size: 9.5pt; margin-bottom: 6px;">DESPACHOS DAS AGÊNCIAS GLOBAIS AO VIVO (RSS)</div>
+            <div class="columns-2">
+                {% for item in news_items[:6] %}
+                <div style="margin-bottom: 6px; border-bottom: 1px dotted #ccc; padding-bottom: 4px;">
+                    <strong style="font-size: 8.2pt;">• {{ item.title }}</strong>
+                    <span style="font-size: 7pt; color: #666;">({{ item.source }})</span>
+                    <p style="font-size: 7.5pt; color: #444; margin-top: 2px;">{{ item.summary }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 5 de 14 • Relações Internacionais</span>
+            <span>Segue na pág. 6: Tecnologia & IA</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 6: TECNOLOGIA & INTELIGÊNCIA ARTIFICIAL -->
+    <div class="page" id="page-6">
+        <div class="page-header">
+            <span>Caderno de Tecnologia, Dados & Futuro</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 6</span>
+        </div>
+
+        <div class="section-title">SISTEMAS AUTÔNOMOS, ENGENHARIA DE DADOS & IA</div>
+
+        <div style="margin-bottom: 6px;">
+            <h1 style="font-size: 17pt; font-weight: 800; margin-bottom: 3px;">{{ data.tech_ai.headline }}</h1>
+            <div class="byline">{{ data.tech_ai.byline }}</div>
+            {% if data.tech_ai.provenance %}
+            <div class="provenance-badge {{ data.tech_ai.provenance.type }}">
+                🤖 {{ data.tech_ai.provenance.source_name }} • {{ data.tech_ai.provenance.author_name }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="columns-2" style="flex: 1;">
+            <p class="drop-cap">{{ data.tech_ai.article }}</p>
+
+            {% if data.tech_ai.context_box %}
+            <div class="context-box">
+                <div class="context-box-title">✦ {{ data.tech_ai.context_box.title }}</div>
+                <ul>
+                    {% for pt in data.tech_ai.context_box.points %}
+                    <li>{{ pt }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if data.tech_ai.recommended_readings %}
+            <div class="readings-box">
+                <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                {% for r in data.tech_ai.recommended_readings %}
+                <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 6 de 14 • Tecnologia & IA</span>
+            <span>Segue na pág. 7: Op-Ed & Opinião</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 7: OP-ED (OPINIÃO & ENSAIOS FILOSÓFICOS) -->
+    <div class="page" id="page-7">
+        <div class="page-header">
+            <span>Caderno de Opinião & Ensaios (Op-Ed)</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 7</span>
+        </div>
+
+        <div class="section-title">PENSAMENTO CRÍTICO & FILOSOFIA CONTEMPORÂNEA</div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1;">
+            <div>
+                <h2 style="font-size: 13pt; font-weight: bold; margin-bottom: 3px;">{{ data.oped.column_1.title }}</h2>
+                <div class="byline">{{ data.oped.column_1.author }}</div>
+                {% if data.oped.column_1.provenance %}
+                <div class="provenance-badge {{ data.oped.column_1.provenance.type }}">
+                    {% if data.oped.column_1.provenance.type == 'academic' %}🏛️ Artigo Acadêmico / Acervo:
+                    {% elif data.oped.column_1.provenance.type == 'essay' %}✍️ Ensaio Cultural:
+                    {% elif data.oped.column_1.provenance.type == 'news' %}🌐 Matéria Oficial:
+                    {% else %}✍️ Ensaio Autêntico:{% endif %}
+                    {{ data.oped.column_1.provenance.source_name }} • {{ data.oped.column_1.provenance.author_name }}
+                    {% if data.oped.column_1.provenance.url %}<a href="{{ data.oped.column_1.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Acessar ↗]</a>{% endif %}
+                </div>
+                {% endif %}
+                <div class="pull-quote">{{ data.oped.column_1.pull_quote }}</div>
+                <p class="drop-cap">{{ data.oped.column_1.text }}</p>
+                {% if data.oped.column_1.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 LEITURA SUGERIDA:</div>
+                    {% for r in data.oped.column_1.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div>
+                <h2 style="font-size: 13pt; font-weight: bold; margin-bottom: 3px;">{{ data.oped.column_2.title }}</h2>
+                <div class="byline">{{ data.oped.column_2.author }}</div>
+                {% if data.oped.column_2.provenance %}
+                <div class="provenance-badge {{ data.oped.column_2.provenance.type }}">
+                    {% if data.oped.column_2.provenance.type == 'academic' %}🏛️ Artigo Acadêmico / Acervo:
+                    {% elif data.oped.column_2.provenance.type == 'essay' %}✍️ Ensaio Cultural:
+                    {% elif data.oped.column_2.provenance.type == 'news' %}🌐 Matéria Oficial:
+                    {% else %}✍️ Ensaio Autêntico:{% endif %}
+                    {{ data.oped.column_2.provenance.source_name }} • {{ data.oped.column_2.provenance.author_name }}
+                    {% if data.oped.column_2.provenance.url %}<a href="{{ data.oped.column_2.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Acessar ↗]</a>{% endif %}
+                </div>
+                {% endif %}
+                <div class="pull-quote">{{ data.oped.column_2.pull_quote }}</div>
+                <p class="drop-cap">{{ data.oped.column_2.text }}</p>
+                {% if data.oped.column_2.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 LEITURA SUGERIDA:</div>
+                    {% for r in data.oped.column_2.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 7 de 14 • Op-Ed & Ensaios</span>
+            <span>Segue na pág. 8: Política de São Paulo</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 8: POLÍTICA & PODER SÃO PAULO -->
+    <div class="page" id="page-8">
+        <div class="page-header">
+            <span>Caderno de Política Estadual • São Paulo</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 8</span>
+        </div>
+
+        <div class="section-title">POLÍTICA, PODER & GESTÃO PÚBLICA PAULISTA</div>
+
+        <div style="margin-bottom: 6px;">
+            <h2 style="font-size: 17pt; font-weight: 800; margin-bottom: 3px;">{{ data.sp_politics.headline }}</h2>
+            <div class="byline">{{ data.sp_politics.byline }}</div>
+            {% if data.sp_politics.provenance %}
+            <div class="provenance-badge {{ data.sp_politics.provenance.type }}">
+                🌐 Fonte: {{ data.sp_politics.provenance.source_name }} • Por {{ data.sp_politics.provenance.author_name }}
+                {% if data.sp_politics.provenance.url %}<a href="{{ data.sp_politics.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Matéria Original ↗]</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if images and (images.sp_politics or images.history) %}
+        <figure class="newspaper-figure" style="margin-bottom: 8px;">
+            <img src="{{ (images.sp_politics or images.history).url }}" alt="{{ (images.sp_politics or images.history).caption }}" style="max-height: 190px;">
+            <figcaption>
+                <span class="caption-text">{{ (images.sp_politics or images.history).caption }}</span>
+                <span class="photo-credit">{{ (images.sp_politics or images.history).credit }}</span>
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns-2" style="flex: 1;">
+            <p class="drop-cap">{{ data.sp_politics.article }}</p>
+
+            {% if data.sp_politics.context_box %}
+            <div class="context-box">
+                <div class="context-box-title">✦ {{ data.sp_politics.context_box.title }}</div>
+                <ul>
+                    {% for pt in data.sp_politics.context_box.points %}
+                    <li>{{ pt }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if data.sp_politics.recommended_readings %}
+            <div class="readings-box">
+                <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                {% for r in data.sp_politics.recommended_readings %}
+                <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 8 de 14 • Política de São Paulo</span>
+            <span>Segue na pág. 9: Economia Nacional</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 9: ATUALIDADES & ECONOMIA NACIONAL -->
+    <div class="page" id="page-9">
+        <div class="page-header">
+            <span>Caderno de Atualidades & Economia Nacional</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 9</span>
+        </div>
+
+        <div class="section-title">MACROECONOMIA, REFORMAS & MERCADO DE TRABALHO</div>
+
+        <div style="margin-bottom: 6px;">
+            <h2 style="font-size: 17pt; font-weight: 800; margin-bottom: 3px;">{{ data.national_economy.headline }}</h2>
+            <div class="byline">{{ data.national_economy.byline }}</div>
+            {% if data.national_economy.provenance %}
+            <div class="provenance-badge {{ data.national_economy.provenance.type }}">
+                🌐 Fonte: {{ data.national_economy.provenance.source_name }} • Por {{ data.national_economy.provenance.author_name }}
+                {% if data.national_economy.provenance.url %}<a href="{{ data.national_economy.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Matéria Original ↗]</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if images and (images.national_economy or images.fashion) %}
+        <figure class="newspaper-figure" style="margin-bottom: 8px;">
+            <img src="{{ (images.national_economy or images.fashion).url }}" alt="{{ (images.national_economy or images.fashion).caption }}" style="max-height: 190px;">
+            <figcaption>
+                <span class="caption-text">{{ (images.national_economy or images.fashion).caption }}</span>
+                <span class="photo-credit">{{ (images.national_economy or images.fashion).credit }}</span>
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns-2" style="flex: 1;">
+            <p class="drop-cap">{{ data.national_economy.article }}</p>
+
+            {% if data.national_economy.context_box %}
+            <div class="context-box">
+                <div class="context-box-title">✦ {{ data.national_economy.context_box.title }}</div>
+                <ul>
+                    {% for pt in data.national_economy.context_box.points %}
+                    <li>{{ pt }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if data.national_economy.recommended_readings %}
+            <div class="readings-box">
+                <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                {% for r in data.national_economy.recommended_readings %}
+                <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 9 de 14 • Economia Nacional</span>
+            <span>Segue na pág. 10: Mundo & Geopolítica</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 10: MUNDO EM FOCO & GEOPOLÍTICA APROFUNDADA -->
+    <div class="page" id="page-10">
+        <div class="page-header">
+            <span>Caderno de Geopolítica & Assuntos Globais</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 10</span>
+        </div>
+
+        <div class="section-title">MUNDO EM FOCO: CONFLITOS, ALIANÇAS & DIPLOMACIA</div>
+
+        <div style="margin-bottom: 6px;">
+            <h2 style="font-size: 16pt; font-weight: 800; margin-bottom: 3px;">{{ data.world_geopolitics.headline }}</h2>
+            <div class="byline">{{ data.world_geopolitics.byline }}</div>
+            {% if data.world_geopolitics.provenance %}
+            <div class="provenance-badge {{ data.world_geopolitics.provenance.type }}">
+                🌐 Fonte: {{ data.world_geopolitics.provenance.source_name }} • Por {{ data.world_geopolitics.provenance.author_name }}
+                {% if data.world_geopolitics.provenance.url %}<a href="{{ data.world_geopolitics.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Matéria Original ↗]</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if images and (images.world_geopolitics or images.jewelry) %}
+        <figure class="newspaper-figure side-figure">
+            <img src="{{ (images.world_geopolitics or images.jewelry).url }}" alt="{{ (images.world_geopolitics or images.jewelry).caption }}">
+            <figcaption>
+                <span class="caption-text">{{ (images.world_geopolitics or images.jewelry).caption }}</span>
+                <span class="photo-credit">{{ (images.world_geopolitics or images.jewelry).credit }}</span>
+            </figcaption>
+        </figure>
+        {% endif %}
+
+        <div class="columns-2" style="margin-bottom: 12px; flex: 1;">
+            <p class="drop-cap">{{ data.world_geopolitics.article }}</p>
+
+            {% if data.world_geopolitics.context_box %}
+            <div class="context-box">
+                <div class="context-box-title">✦ {{ data.world_geopolitics.context_box.title }}</div>
+                <ul>
+                    {% for pt in data.world_geopolitics.context_box.points %}
+                    <li>{{ pt }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if data.world_geopolitics.recommended_readings %}
+            <div class="readings-box">
+                <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                {% for r in data.world_geopolitics.recommended_readings %}
+                <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 10 de 14 • Mundo & Geopolítica</span>
+            <span>Segue na pág. 11: Guia Metrópole SP</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 11: METRÓPOLE SP — GASTRONOMIA & PASSEIOS -->
+    <div class="page" id="page-11">
+        <div class="page-header">
+            <span>Caderno Paulistano</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 11</span>
+        </div>
+
+        <div class="section-title">{{ data.lifestyle_sp.section_title }}</div>
+        <div class="article-subdeck" style="font-size: 9.5pt; margin-bottom: 8px;">{{ data.lifestyle_sp.section_intro }}</div>
+
+        <div style="display: grid; grid-template-columns: 1.18fr 0.82fr; gap: 12px; flex: 1;">
+            <div>
+                <h3 style="font-size: 10.5pt; border-bottom: 1.5px solid #333; padding-bottom: 2px; margin-bottom: 6px;">
+                    MESA & DEGUSTAÇÃO: RESTAURANTES & CAFÉS ({{ data.lifestyle_sp.gastronomy|length }})
+                </h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    {% for rest in data.lifestyle_sp.gastronomy %}
+                    <div class="sp-card" style="margin-bottom: 4px; padding: 5px 6px;">
+                        <h4 style="font-size: 8pt; margin-bottom: 2px;">
+                            {{ rest.name }} 
+                            <span style="font-size: 6.2pt; font-weight: normal; color: #555;">({{ rest.neighborhood }})</span>
+                        </h4>
+                        {% if rest.type %}<div style="font-size: 5.8pt; font-family: 'PT Sans'; text-transform: uppercase; color: #1a365d; font-weight: bold; margin-bottom: 2px;">{{ rest.type }}</div>{% endif %}
+                        <p style="font-size: 6.8pt; line-height: 1.25; margin-bottom: 2px;">{{ rest.highlight }}</p>
+                        {% if rest.dish %}<div style="font-size: 6.2pt; color: #800020;">🍽️ <strong>Sugestão:</strong> {{ rest.dish }}</div>{% endif %}
+                        {% if rest.hours %}<div style="font-size: 5.8pt; color: #666;">⏰ {{ rest.hours }}</div>{% endif %}
+                        {% if rest.map_url %}
+                        <a href="{{ rest.map_url }}" target="_blank" class="map-link-btn" style="font-size: 5.8pt; padding: 1px 4px; margin-top: 3px;">📍 Ver no Maps →</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 10.5pt; border-bottom: 1.5px solid #333; padding-bottom: 2px; margin-bottom: 6px;">
+                    EXPOSIÇÕES, ACERVOS & CAMINHADAS ({{ data.lifestyle_sp.walks|length }})
+                </h3>
+                {% if images and images.lifestyle_sp %}
+                <figure class="newspaper-figure" style="margin-bottom: 6px;">
+                    <img src="{{ images.lifestyle_sp.url }}" alt="{{ images.lifestyle_sp.caption }}" style="max-height: 100px;">
+                    <figcaption>
+                        <span class="caption-text">{{ images.lifestyle_sp.caption }}</span>
+                        <span class="photo-credit">{{ images.lifestyle_sp.credit }}</span>
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                {% for walk in data.lifestyle_sp.walks %}
+                <div class="sp-card walk" style="margin-bottom: 4px; padding: 5px 6px;">
+                    <h4 style="font-size: 7.8pt; margin-bottom: 1px;">
+                        {{ walk.title }}
+                        {% if walk.institution %}<span style="font-size: 6.2pt; font-weight: normal; color: #666;">({{ walk.institution }})</span>{% endif %}
+                    </h4>
+                    <p style="font-size: 6.8pt; line-height: 1.25; margin-bottom: 2px;"><strong>Foco:</strong> {{ walk.itinerary }}</p>
+                    <div style="font-size: 6.2pt; color: #444;">💡 <strong>Dica:</strong> {{ walk.tip }}</div>
+                    {% if walk.hours %}<div style="font-size: 5.8pt; color: #666;">⏰ {{ walk.hours }}</div>{% endif %}
+                    {% if walk.map_url %}
+                    <a href="{{ walk.map_url }}" target="_blank" class="map-link-btn" style="font-size: 5.8pt; padding: 1px 4px; margin-top: 2px;">📍 Ver Trajeto no Maps →</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div style="border: 1px solid #333; padding: 6px; background: #faf8f2; text-align: center; margin-top: 6px;">
+                    <p style="font-style: italic; font-size: 7.5pt; margin: 0;">{{ data.metadata.quote }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 11 de 14 • Metrópole SP</span>
+            <span>Segue na pág. 12: Ofícios, Oportunidades & Curiosidades</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 12: CADERNO DE OFÍCIOS, OPORTUNIDADES & CURIOSIDADES -->
+    <div class="page" id="page-12">
+        <div class="page-header">
+            <span>Caderno Especial: Ofícios de Arte & Patrimônio</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 12</span>
+        </div>
+
+        <div class="section-title">{{ data.crafts_careers.title }}</div>
+        <div class="article-subdeck" style="font-size: 8.8pt; margin-bottom: 8px;">
+            {{ data.crafts_careers.subtitle }}
+        </div>
+
+        <div class="columns cols-2" style="flex: 1;">
+            <div>
+                {% if data.crafts_careers.three_blocks %}
+                <!-- Bloco 1: Concursos Públicos & Editais Oficiais -->
+                <div style="margin-bottom: 8px;">
+                    <h3 style="font-size: 8.8pt; text-transform: uppercase; border-bottom: 1.5px solid #1a365d; padding-bottom: 2px; margin-bottom: 5px; color: #1a365d; font-family: 'PT Sans', sans-serif;">
+                        🏛️ Concursos Públicos & Editais de Salvaguarda
+                    </h3>
+                    {% for opp in data.crafts_careers.three_blocks.public_contests %}
+                    <div class="opportunity-card" style="margin-bottom: 5px; padding: 5px 6px;">
+                        {% if opp.verified_badge %}<div style="font-size: 5.4pt; color: #15803d; font-weight: bold; margin-bottom: 2px; text-transform: uppercase;">{{ opp.verified_badge }}</div>{% endif %}
+                        <div class="opportunity-title" style="font-size: 8pt; font-weight: bold;">{{ opp.role }}</div>
+                        <div class="opportunity-inst" style="font-size: 6.5pt; color: #444;">{{ opp.institution }} • <em>{{ opp.location }}</em></div>
+                        {% if opp.salary %}<div style="font-size: 6.2pt; color: #1b5e20; font-weight: bold;">💰 {{ opp.salary }}</div>{% endif %}
+                        {% if opp.date %}<div style="font-size: 6pt; color: #555;">📅 {{ opp.date }} ({{ opp.type }})</div>{% endif %}
+                        <div class="opportunity-scope" style="font-size: 6.5pt; margin-top: 1px;"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                        <div class="opportunity-req" style="font-size: 6.2pt; color: #444;"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                        {% if opp.url %}
+                        <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn" style="font-size: 6pt; padding: 2px 5px; margin-top: 2px; display: inline-block;">🔗 {{ opp.link_label or 'Acessar Edital Oficial →' }}</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Bloco 2: Conservação & Restauro em Acervos -->
+                <div>
+                    <h3 style="font-size: 8.8pt; text-transform: uppercase; border-bottom: 1.5px solid #5c3a21; padding-bottom: 2px; margin-bottom: 5px; color: #5c3a21; font-family: 'PT Sans', sans-serif;">
+                        🖼️ Conservação & Restauro em Acervos
+                    </h3>
+                    {% for opp in data.crafts_careers.three_blocks.conservation_acervo %}
+                    <div class="opportunity-card" style="margin-bottom: 5px; padding: 5px 6px;">
+                        {% if opp.verified_badge %}<div style="font-size: 5.4pt; color: #15803d; font-weight: bold; margin-bottom: 2px; text-transform: uppercase;">{{ opp.verified_badge }}</div>{% endif %}
+                        <div class="opportunity-title" style="font-size: 8pt; font-weight: bold;">{{ opp.role }}</div>
+                        <div class="opportunity-inst" style="font-size: 6.5pt; color: #444;">{{ opp.institution }} • <em>{{ opp.location }}</em></div>
+                        {% if opp.salary %}<div style="font-size: 6.2pt; color: #1b5e20; font-weight: bold;">💰 {{ opp.salary }}</div>{% endif %}
+                        {% if opp.date %}<div style="font-size: 6pt; color: #555;">📅 {{ opp.date }} ({{ opp.type }})</div>{% endif %}
+                        <div class="opportunity-scope" style="font-size: 6.5pt; margin-top: 1px;"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                        <div class="opportunity-req" style="font-size: 6.2pt; color: #444;"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                        {% if opp.url %}
+                        <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn" style="font-size: 6pt; padding: 2px 5px; margin-top: 2px; display: inline-block;">🔗 {{ opp.link_label or 'Ver Processo Seletivo →' }}</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <h3 style="font-size: 9.5pt; text-transform: uppercase; border-bottom: 1.5px solid #222; padding-bottom: 2px; margin-bottom: 8px;">
+                    Oportunidades em Aberto • Conservação & Joalheria
+                </h3>
+                {% for opp in data.crafts_careers.opportunities %}
+                <div class="opportunity-card">
+                    <div class="opportunity-title">{{ opp.role }}</div>
+                    <div class="opportunity-inst">{{ opp.institution }} • <em>{{ opp.location }}</em> ({{ opp.type }})</div>
+                    {% if opp.date %}<div style="font-size: 6.8pt; color: #555; margin-bottom: 2px;">📅 <strong>Publicação:</strong> {{ opp.date }}</div>{% endif %}
+                    <div class="opportunity-scope"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                    <div class="opportunity-req"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                    {% if opp.url %}
+                    <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn">🔗 {{ opp.link_label or 'Ver Vaga / Edital →' }}</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div>
+                <!-- Bloco 3: Bancada, Ourivesaria & Alta Joalheria -->
+                {% if data.crafts_careers.three_blocks and data.crafts_careers.three_blocks.jewelry_atelier %}
+                <div style="margin-bottom: 8px;">
+                    <h3 style="font-size: 8.8pt; text-transform: uppercase; border-bottom: 1.5px solid #800020; padding-bottom: 2px; margin-bottom: 5px; color: #800020; font-family: 'PT Sans', sans-serif;">
+                        💎 Bancada, Ourivesaria & Alta Joalheria
+                    </h3>
+                    {% for opp in data.crafts_careers.three_blocks.jewelry_atelier %}
+                    <div class="opportunity-card" style="margin-bottom: 5px; padding: 5px 6px;">
+                        {% if opp.verified_badge %}<div style="font-size: 5.4pt; color: #15803d; font-weight: bold; margin-bottom: 2px; text-transform: uppercase;">{{ opp.verified_badge }}</div>{% endif %}
+                        <div class="opportunity-title" style="font-size: 8pt; font-weight: bold;">{{ opp.role }}</div>
+                        <div class="opportunity-inst" style="font-size: 6.5pt; color: #444;">{{ opp.institution }} • <em>{{ opp.location }}</em></div>
+                        {% if opp.salary %}<div style="font-size: 6.2pt; color: #1b5e20; font-weight: bold;">💰 {{ opp.salary }}</div>{% endif %}
+                        {% if opp.date %}<div style="font-size: 6pt; color: #555;">📅 {{ opp.date }} ({{ opp.type }})</div>{% endif %}
+                        <div class="opportunity-scope" style="font-size: 6.5pt; margin-top: 1px;"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                        <div class="opportunity-req" style="font-size: 6.2pt; color: #444;"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                        {% if opp.url %}
+                        <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn" style="font-size: 6pt; padding: 2px 5px; margin-top: 2px; display: inline-block;">🔗 {{ opp.link_label or 'Canal de Vagas AJESP →' }}</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if images.crafts_careers %}
+                <figure class="article-figure" style="margin-top: 0; margin-bottom: 8px;">
+                    <img src="{{ images.crafts_careers.url }}" alt="{{ images.crafts_careers.caption }}" />
+                    <figcaption>
+                        <strong>Figura:</strong> {{ images.crafts_careers.caption }}
+                        {% if images.crafts_careers.credit %}
+                        <span class="img-credit">({{ images.crafts_careers.credit }})</span>
+                        {% endif %}
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                <h3 style="font-size: 8.8pt; text-transform: uppercase; border-bottom: 1.5px solid #222; padding-bottom: 2px; margin-bottom: 6px; font-family: 'PT Sans', sans-serif;">
+                    Fatos Curiosos • Ciência dos Materiais & Ateliê
+                </h3>
+                {% for cur in data.crafts_careers.curiosities %}
+                <div class="curiosity-item" style="margin-bottom: 4px;">
+                    <h4 style="font-size: 7.8pt; margin-bottom: 1px;">✦ {{ cur.topic or cur.title }}</h4>
+                    <p style="font-size: 6.8pt; line-height: 1.25; margin: 0;">{{ cur.fact or cur.text }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 12 de 14 • Ofícios, Restauro & Joalheria</span>
+            <span>Segue na pág. 13: Palavras Cruzadas</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 13: THE NEW YORK TIMES CROSSWORD (PALAVRAS CRUZADAS) -->
+    <div class="page" id="page-13">
+        <div class="page-header">
+            <span>Caderno de Palavras Cruzadas</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 13</span>
+        </div>
+
+        <div class="section-title">{{ data.crossword.title }}</div>
+        <div class="article-subdeck" style="font-size: 8.8pt; margin-bottom: 8px;">
+            {{ data.crossword.instructions }}
+        </div>
+
+        <div class="crossword-layout" style="flex: 1;">
+            <div>
+                <table class="crossword-table">
+                    {% for row_idx in range(crossword.size) %}
+                    <tr>
+                        {% for col_idx in range(crossword.size) %}
+                        {% set cell_letter = crossword.grid[row_idx][col_idx] %}
+                        {% set cell_num = crossword.numbers[row_idx][col_idx] %}
+                        <td class="{% if cell_letter == '' %}block{% endif %}">
+                            {% if cell_num > 0 %}
+                            <span class="crossword-num">{{ cell_num }}</span>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <div style="margin-top: 18px; border: 1px solid #ccc; padding: 6px 10px; background: #faf9f5;">
+                    <h4 style="font-size: 8.2pt; margin-bottom: 2px;">REGRAS DO CROSSWORD CLÁSSICO</h4>
+                    <p style="font-size: 7.2pt; color: #444; margin: 0;">
+                        As respostas cruzam-se nas células brancas numeradas. Cada número corresponde ao início de uma palavra horizontal ou vertical.
+                    </p>
+                </div>
+
+                <div style="margin-top: 12px; font-size: 6.8pt; color: #777;">
+                    <strong>GABARITO (Horizontais & Verticais):</strong><br>
+                    {% for w in crossword.across %}
+                    {{ w.num }}H: {{ w.word }}{% if not loop.last %} • {% endif %}
+                    {% endfor %}
+                    <br>
+                    {% for w in crossword.down %}
+                    {{ w.num }}V: {{ w.word }}{% if not loop.last %} • {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="clue-box">
+                    <h4>HORIZONTAIS</h4>
+                    <div class="clue-list">
+                        {% for w in crossword.across %}
+                        <div class="clue-item">
+                            <strong>{{ w.num }}.</strong> 
+                            {% if w.category %}<span style="font-size: 5.8pt; text-transform: uppercase; color: #8c2d19; font-weight: bold;">[{{ w.category }} • {{ w.difficulty }}]</span>{% endif %}
+                            {{ w.clue }} ({{ w.clean|length }} letras)
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="clue-box" style="margin-top: 10px;">
+                    <h4>VERTICAIS</h4>
+                    <div class="clue-list">
+                        {% for w in crossword.down %}
+                        <div class="clue-item">
+                            <strong>{{ w.num }}.</strong> 
+                            {% if w.category %}<span style="font-size: 5.8pt; text-transform: uppercase; color: #1a365d; font-weight: bold;">[{{ w.category }} • {{ w.difficulty }}]</span>{% endif %}
+                            {{ w.clue }} ({{ w.clean|length }} letras)
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 13 de 14 • Palavras Cruzadas (NYT)</span>
+            <span>Segue na pág. 14: O Grande Caça-Palavras</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 14: O GRANDE CAÇA-PALAVRAS -->
+    <div class="page" id="page-14">
+        <div class="page-header">
+            <span>Caderno de Lazer & Passatempos</span>
+            <span>The Personal Dispatch</span>
+            <span>Página 14</span>
+        </div>
+
+        <div class="section-title">{{ data.games_diversions.title }}</div>
+        <p style="font-size: 8.5pt; margin-bottom: 8px;">{{ data.games_diversions.instructions }}</p>
+
+        <div class="word-search-layout" style="flex: 1;">
+            <div>
+                <table class="grid-table">
+                    {% for row in word_search.grid %}
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                {% if word_search.glossary %}
+                <div style="margin-top: 10px; border-top: 1.5px solid #222; padding-top: 6px;">
+                    <h4 style="font-size: 7.8pt; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">
+                        LÉXICO CULTURAL DOS PASSATEMPOS (MINI-GLOSSÁRIO)
+                    </h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                        {% for term, item in word_search.glossary.items() %}
+                        {% if loop.index <= 6 %}
+                        <div class="glossary-card">
+                            <div class="glossary-term">{{ term }} <span class="glossary-cat">({{ item.category }})</span></div>
+                            <div class="glossary-def">{{ item.definition }}</div>
+                            {% if item.etymology %}<div class="glossary-etym">✦ {{ item.etymology }}</div>{% endif %}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <h3 style="font-size: 9.5pt; text-transform: uppercase; border-bottom: 1.5px solid #333; padding-bottom: 2px;">
+                    PALAVRAS A ENCONTRAR ({{ word_search.placed_words|length }})
+                </h3>
+                <div class="words-checklist">
+                    {% for word in word_search.placed_words %}
+                    <span class="word-tag">☐ {{ word }}</span>
+                    {% endfor %}
+                </div>
+
+                <div style="margin-top: 16px; border: 1px solid #ccc; padding: 8px; background: #faf9f5;">
+                    <h4 style="font-size: 8.5pt; margin-bottom: 3px;">COLÓFON EDITORIAL</h4>
+                    <p style="font-size: 7.2pt; color: #444; margin: 0;">
+                        Edição dominical de luxo compilada pela redação <strong>MyJournal AI</strong> em 14 cadernos exclusivos.
+                        Tipografia serifada nobre com diagramação broadsheet conforme tradição do The New York Times.
+                    </p>
+                </div>
+
+                <div style="margin-top: 12px; font-size: 6.8pt; color: #777;">
+                    <strong>GABARITO (Linha, Coluna):</strong><br>
+                    {% for sol in word_search.solutions %}
+                    {{ sol.word }}: (L{{ sol.start[0] }}, C{{ sol.start[1] }}){% if not loop.last %} • {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <span>The Personal Dispatch</span>
+            <span>Página 14 de 14 • Passatempos & Lazer</span>
+            <span>Fim da Edição Dominical</span>
+        </div>
+    </div>
+
+</body>
+</html>

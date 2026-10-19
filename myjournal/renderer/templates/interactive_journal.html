@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.metadata.title }} — Edição Digital Completa (14 Páginas)</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=PT+Sans:wght@400;700&display=swap">
+    <style>
+        :root {
+            --bg-body: #2b2b2b;
+            --paper-bg: #fdfbf7;
+            --text-main: #111111;
+            --border-dark: #222222;
+            --accent-burgundy: #8c2d19;
+            --accent-blue: #1a365d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Lora', 'Georgia', serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Top Sticky Reader Bar */
+        .reader-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            background: #181818;
+            border-bottom: 2px solid #000;
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            color: #eee;
+        }
+
+        .reader-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .page-pill {
+            background: #2a2a2a;
+            color: #ccc;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid #444;
+        }
+
+        .page-pill:hover, .page-pill.active {
+            background: #fdfbf7;
+            color: #111;
+            border-color: #fff;
+        }
+
+        .download-btn {
+            background: var(--accent-burgundy);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .download-btn:hover {
+            background: #a83820;
+        }
+
+        /* Container of pages */
+        .newspaper-container {
+            max-width: 960px;
+            margin: 25px auto 60px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Individual Broadsheet Page (A4 Aspect Ratio) */
+        .journal-page {
+            background: var(--paper-bg);
+            padding: 40px 48px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            border: 1px solid #d5d1c8;
+            min-height: 1250px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Page Headers */
+        .page-header {
+            border-bottom: 2px solid #000;
+            padding-bottom: 3px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #333;
+        }
+
+        .masthead-container {
+            text-align: center;
+            border-bottom: 4px double #111;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .ears-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10.5px;
+            padding: 3px 0;
+            border-bottom: 1px solid #222;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        .main-masthead {
+            font-family: 'Playfair Display', 'Cinzel', serif;
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin: 0;
+            text-transform: uppercase;
+            color: #0b0b0b;
+            line-height: 1;
+        }
+
+        .masthead-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 14px;
+            color: #444;
+            margin-top: 4px;
+        }
+
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #222;
+            border-bottom: 2px solid #222;
+            padding: 4px 0;
+            margin-top: 8px;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            margin: 0;
+            color: #000;
+            line-height: 1.18;
+        }
+
+        .lead-headline {
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            line-height: 1.15;
+        }
+
+        .lead-subdeck {
+            font-size: 15px;
+            font-style: italic;
+            text-align: center;
+            color: #333;
+            margin-bottom: 16px;
+            padding: 0 20px;
+            line-height: 1.35;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .byline {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e0dfdb;
+            padding-bottom: 3px;
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 17px;
+            font-weight: 700;
+            color: #222;
+            text-align: center;
+            border-top: 2px solid #111;
+            border-bottom: 2px solid #111;
+            padding: 14px 20px;
+            margin: 20px 0;
+            line-height: 1.35;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 14px;
+        }
+
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 4em;
+            line-height: 0.75;
+            padding-top: 4px;
+            padding-right: 8px;
+            padding-bottom: 0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            color: #000;
+        }
+
+        /* Columns */
+        .columns-2 {
+            column-count: 2;
+            column-gap: 28px;
+            column-rule: 1px solid #e0dfdb;
+        }
+
+        .columns-3 {
+            column-count: 3;
+            column-gap: 22px;
+            column-rule: 1px solid #e0dfdb;
+        }
+
+        /* Agenda Grid */
+        .agenda-days-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .agenda-day-card {
+            border: 1px solid #d8d4c9;
+            background: #fbf9f4;
+            padding: 12px 14px;
+            border-top: 4px solid #222;
+        }
+
+        .agenda-day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+
+        .event-badge {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            color: #fff;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        .badge-work { background: #1a365d; }
+        .badge-personal { background: #553c9a; }
+
+        /* Agenda Híbrida Estruturada (Cards com IA) */
+        .agenda-days-structured {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+            flex: 1;
+        }
+
+        .agenda-day-block {
+            background: #fbf9f4;
+            border: 1px solid #d8d4c9;
+            border-top: 3px solid #222;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agenda-day-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2ded5;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .agenda-day-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .agenda-demand-badge {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #222;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 2px;
+            letter-spacing: 0.3px;
+        }
+
+        .agenda-day-advice {
+            font-family: 'Playfair Display', serif;
+            font-size: 11px;
+            font-style: italic;
+            color: #444;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .agenda-events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .agenda-event-card {
+            background: #ffffff;
+            border: 1px solid #e0dcd2;
+            border-left: 4px solid #553c9a;
+            padding: 6px 8px;
+        }
+
+        .agenda-event-card.card-work {
+            border-left-color: #1a365d;
+        }
+
+        .event-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .event-time-badge {
+            font-weight: 700;
+            color: #111;
+        }
+
+        .event-focus-tag {
+            font-weight: 700;
+            color: #444;
+            background: #f0ede4;
+            padding: 1px 6px;
+            border-radius: 2px;
+        }
+
+        .event-card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #000;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .event-ai-summary {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            color: #444;
+            line-height: 1.25;
+        }
+
+        .event-location-text {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* SP Cards */
+        .sp-card {
+            border-left: 3.5px solid var(--accent-burgundy);
+            padding-left: 12px;
+            margin-bottom: 16px;
+        }
+
+        .sp-card.walk {
+            border-left-color: #2b6cb0;
+        }
+
+        .map-btn {
+            display: inline-block;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: #1a365d;
+            text-decoration: underline;
+            margin-top: 4px;
+        }
+
+        /* Opportunity & Curiosity Cards */
+        .opportunity-card {
+            border: 1px solid #dcd8ce;
+            background: #ffffff;
+            border-left: 4px solid var(--accent-blue);
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .opportunity-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 3px;
+        }
+
+        .opportunity-inst {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .opportunity-scope {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 6px;
+            line-height: 1.35;
+        }
+
+        .opportunity-req {
+            font-size: 11px;
+            color: #555;
+            background: #f7f5ed;
+            padding: 4px 8px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .opportunity-btn {
+            display: inline-block;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.15s;
+        }
+
+        .opportunity-btn:hover {
+            color: var(--accent-burgundy);
+            border-bottom-color: var(--accent-burgundy);
+        }
+
+        .curiosity-item {
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .curiosity-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-burgundy);
+            margin-bottom: 4px;
+        }
+
+        .curiosity-item p {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #2b2b2b;
+            margin: 0;
+        }
+
+        /* Word Search Game */
+        .puzzle-section {
+            background: #f5f2e9;
+            border: 2px solid #222;
+            padding: 20px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .grid-table {
+            border-collapse: collapse;
+            margin: 15px auto;
+            background: #fff;
+            border: 2px solid #111;
+            user-select: none;
+        }
+
+        .grid-table td {
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: 'PT Sans', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            border: 1px solid #d4d0c7;
+            color: #111;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+
+        .grid-table td.selected {
+            background: #ffe066;
+        }
+
+        .grid-table td.found {
+            background: #a3e635;
+            color: #000;
+        }
+
+        .words-checklist {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .word-tag {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            background: #ece8de;
+            padding: 4px 10px;
+            border: 1px solid #ccc7ba;
+            border-radius: 3px;
+        }
+
+        .word-tag.completed {
+            background: #d9f99d;
+            text-decoration: line-through;
+            color: #4d7c0f;
+            border-color: #a3e635;
+        }
+
+        .footer-nav {
+            margin-top: auto;
+            border-top: 1px solid #111;
+            padding-top: 6px;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        /* Broadsheet Newspaper Figures (B&W High Contrast NYT / WSJ Style) */
+        .newspaper-figure {
+            margin: 12px 0 16px 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .newspaper-figure img {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(125%) brightness(96%);
+            border: 1px solid #111;
+            display: block;
+            background: #eae7df;
+        }
+
+        .newspaper-figure figcaption {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 6px;
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #222;
+            line-height: 1.25;
+            border-bottom: 1px solid #222;
+            padding-bottom: 4px;
+            text-align: left;
+        }
+
+        .newspaper-figure .photo-credit {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #555;
+            margin-left: 12px;
+            white-space: nowrap;
+        }
+
+        .hero-figure {
+            margin-bottom: 16px;
+        }
+
+        .hero-figure img {
+            max-height: 420px;
+        }
+
+        .side-figure {
+            float: right;
+            width: 46%;
+            margin: 0 0 14px 18px;
+        }
+
+        .side-figure img {
+            max-height: 280px;
+        }
+
+        /* Proveniência & Badges Editoriais */
+        .provenance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            background: #f1ede3;
+            border-left: 3.5px solid #111;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .provenance-badge.news { border-left-color: var(--accent-burgundy); }
+        .provenance-badge.ai { border-left-color: var(--accent-blue); }
+        .provenance-badge.author { border-left-color: #2e7d32; }
+        .provenance-badge a { color: inherit; text-decoration: underline; }
+
+        /* Boxes de Contexto & Leituras Recomendadas */
+        .context-box {
+            border: 1px solid #111;
+            background: #faf8f2;
+            padding: 12px 16px;
+            margin: 14px 0;
+        }
+
+        .context-box-title {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1.5px solid #111;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .context-box ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.45;
+        }
+
+        .context-box li {
+            margin-bottom: 4px;
+        }
+
+        .readings-box {
+            border-top: 1px dashed #777;
+            margin-top: 14px;
+            padding-top: 8px;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .readings-title {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .reading-item {
+            margin-bottom: 4px;
+        }
+
+        .reading-item strong {
+            color: #111;
+        }
+
+        /* Mini-Glossário Cultural para Passatempos */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+            border-top: 2px solid #222;
+            padding-top: 12px;
+        }
+
+        .glossary-card {
+            border: 1px solid #dcd8ce;
+            background: #ffffff;
+            padding: 8px 10px;
+            border-left: 3.5px solid var(--accent-burgundy);
+            transition: transform 0.15s;
+        }
+
+        .glossary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        .glossary-term {
+            font-size: 13px;
+            font-weight: 900;
+            color: #111;
+            text-transform: uppercase;
+        }
+
+        .glossary-cat {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: 700;
+        }
+
+        .glossary-def {
+            font-size: 12px;
+            color: #333;
+            line-height: 1.35;
+            margin-top: 3px;
+        }
+
+        .glossary-etym {
+            font-size: 11px;
+            font-style: italic;
+            color: #777;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="reader-navbar">
+        <div class="reader-title">📰 {{ data.metadata.title }} — Edição Digital Completa (14 Cadernos)</div>
+        <nav class="nav-pills">
+            <a href="#page-1" class="page-pill">1. Capa</a>
+            <a href="#page-2" class="page-pill">2. Estratégia</a>
+            <a href="#page-3" class="page-pill">3. Agenda</a>
+            <a href="#page-4" class="page-pill">4. Política</a>
+            <a href="#page-5" class="page-pill">5. Mundo</a>
+            <a href="#page-6" class="page-pill">6. Tech & IA</a>
+            <a href="#page-7" class="page-pill">7. Op-Ed</a>
+            <a href="#page-8" class="page-pill">8. Política SP</a>
+            <a href="#page-9" class="page-pill">9. Economia Nacional</a>
+            <a href="#page-10" class="page-pill">10. Geopolítica Global</a>
+            <a href="#page-11" class="page-pill">11. Metrópole SP</a>
+            <a href="#page-12" class="page-pill">12. Concursos & Ofícios</a>
+            <a href="#page-13" class="page-pill">13. Crossword</a>
+            <a href="#page-14" class="page-pill">14. Caça-Palavras</a>
+            <a href="{{ pdf_url }}" class="download-btn">📥 Baixar PDF (14 Págs)</a>
+        </nav>
+    </header>
+
+    <main class="newspaper-container">
+
+        <!-- PÁGINA 1: CAPA -->
+        <article class="journal-page" id="page-1">
+            <div class="ears-bar">
+                <div><strong>{{ data.metadata.weather }}</strong> • {{ data.metadata.edition }}</div>
+                <div><em>“Todas as notícias dignas de registro pessoal e intelectual”</em></div>
+                <div><strong>{{ data.metadata.date_str }}</strong> • {{ data.metadata.volume }}</div>
+            </div>
+
+            <div class="masthead-container">
+                <div class="main-masthead">{{ data.metadata.title }}</div>
+                <div class="masthead-subtitle">{{ data.metadata.subtitle }}</div>
+                <div class="info-bar">
+                    <span>SEMANA DE {{ data.metadata.date_str }}</span>
+                    <span>EDIÇÃO DOMINICAL DE LUXO • 14 CADERNOS TEMÁTICOS</span>
+                    <span>SÃO PAULO, BRASIL</span>
+                </div>
+            </div>
+
+            <div class="lead-headline">{{ data.front_page.lead_headline }}</div>
+            <div class="lead-subdeck">{{ data.front_page.lead_subdeck }}</div>
+
+            {% if images and images.front_page %}
+            <figure class="newspaper-figure hero-figure">
+                <img src="{{ images.front_page.url }}" alt="{{ images.front_page.caption }}">
+                <figcaption>
+                    <span class="caption-text">{{ images.front_page.caption }}</span>
+                    <span class="photo-credit">{{ images.front_page.credit }}</span>
+                </figcaption>
+            </figure>
+            {% endif %}
+
+            <div class="columns-2" style="flex: 1;">
+                <p class="drop-cap">{{ data.front_page.lead_article }}</p>
+            </div>
+
+            <div style="border-top: 2px solid #222; border-bottom: 1px solid #222; padding: 10px 0; margin-top: auto; margin-bottom: 8px;">
+                <div style="font-family: 'PT Sans'; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">
+                    SUMÁRIO DOS 14 CADERNOS DESTA EDIÇÃO
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; font-size: 11px; color: #333;">
+                    <div><strong>Pág. 1:</strong> Capa & Editorial</div>
+                    <div><strong>Pág. 2:</strong> Estratégia de Vida</div>
+                    <div><strong>Pág. 3:</strong> Agenda Dia a Dia</div>
+                    <div><strong>Pág. 4:</strong> Política Nacional</div>
+                    <div><strong>Pág. 5:</strong> Radar Internacional</div>
+                    <div><strong>Pág. 6:</strong> Tecnologia & IA</div>
+                    <div><strong>Pág. 7:</strong> Op-Ed (Opinião)</div>
+                    <div><strong>Pág. 8:</strong> Política de São Paulo</div>
+                    <div><strong>Pág. 9:</strong> Economia Nacional</div>
+                    <div><strong>Pág. 10:</strong> Geopolítica Global</div>
+                    <div><strong>Pág. 11:</strong> Guia Metrópole SP</div>
+                    <div><strong>Pág. 12:</strong> Concursos & Ofícios</div>
+                    <div><strong>Pág. 13:</strong> Palavras Cruzadas (NYT)</div>
+                    <div><strong>Pág. 14:</strong> O Grande Caça-Palavras</div>
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 1 de 14 • Capa & Abertura</span>
+                <span>Segue na pág. 2: Estratégia de Vida</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 2: ESTRATÉGIA DE RITMO -->
+        <article class="journal-page" id="page-2">
+            <header class="page-header">
+                <span>Caderno de Vida & Estratégia</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 2</span>
+            </header>
+
+            <div class="section-title">O RITMO DA SEMANA: DIAGNÓSTICO & CADÊNCIA</div>
+            <div class="byline">Por Redação de Planejamento & Equilíbrio Pessoal</div>
+
+            <div class="columns-2" style="margin-bottom: 20px;">
+                <p class="drop-cap">{{ data.front_page.itinerary_summary }}</p>
+                <p>
+                    A conciliação de compromissos técnicos de alta exigência com práticas de refinamento pessoal exige clareza de prioridades.
+                    Ao mapear com antecedência os picos de energia requeridos nas sessões de estudo, trabalho e criação, o leitor transforma
+                    a sobrecarga em uma sequência deliberada de atos com significado e propósito.
+                </p>
+            </div>
+
+            <div class="pull-quote">
+                “Não é a ausência de compromissos que define a serenidade, mas a exatidão com que escolhemos onde depositar a atenção.”
+            </div>
+
+            <div style="border-top: 1px solid #111; padding-top: 14px; margin-top: auto;">
+                <div style="font-family: 'PT Sans'; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px;">
+                    PRINCÍPIOS PARA A SEMANA
+                </div>
+                <div class="columns-3" style="font-size: 12px; color: #333;">
+                    <div>
+                        <strong>1. Janelas de Profundidade:</strong> Reserve as manhãs para tarefas que exigem esforço cognitivo máximo antes que o ruído externo interfira.
+                    </div>
+                    <div>
+                        <strong>2. Pausas Restauradoras:</strong> Não negligencie as noites dedicadas ao piano e ao estudo de línguas como pontes de transição emocional.
+                    </div>
+                    <div>
+                        <strong>3. O Ritual da Cidade:</strong> Permita-se vivenciar a capital no fim de semana com o olhar de um viajante atento e curioso.
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 2 de 14 • Estratégia & Vida Pessoal</span>
+                <span>Segue na pág. 3: Agenda Detalhada</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 3: AGENDA DIA A DIA -->
+        <article class="journal-page" id="page-3">
+            <header class="page-header">
+                <span>Caderno de Agenda & Compromissos</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 3</span>
+            </header>
+
+            <div class="section-title">ITINERÁRIO DETALHADO • GOOGLE AGENDA</div>
+            <div class="byline">Sincronizado via Calendário Pessoal & Profissional</div>
+
+            {% if agenda_days %}
+            <div class="agenda-days-structured">
+                {% for day in agenda_days %}
+                <div class="agenda-day-block">
+                    <div class="agenda-day-header-meta">
+                        <span class="agenda-day-title">{{ day.date_str }}</span>
+                        <span class="agenda-demand-badge">{{ day.cognitive_demand }}</span>
+                    </div>
+                    <div class="agenda-day-advice">💡 {{ day.daily_advice }}</div>
+                    <div class="agenda-events-list">
+                        {% for ev in day.events %}
+                        <div class="agenda-event-card {% if ev.category == 'Trabalho' %}card-work{% else %}card-personal{% endif %}">
+                            <div class="event-meta-row">
+                                <span class="event-time-badge">{{ ev.time_str }}</span>
+                                <span class="event-focus-tag">{{ ev.focus_tag }}</span>
+                            </div>
+                            <div class="event-card-title">{{ ev.title }}</div>
+                            <div class="event-ai-summary">{{ ev.executive_summary }}</div>
+                            {% if ev.location %}
+                            <div class="event-location-text">📍 {{ ev.location }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="agenda-days-grid" style="flex: 1;">
+                {% for ev in events %}
+                <div class="agenda-day-card">
+                    <div class="agenda-day-header">
+                        <span>{{ ev.formatted_time }}</span>
+                        <span class="event-badge {% if ev.category == 'Trabalho' %}badge-work{% else %}badge-personal{% endif %}">
+                            {{ ev.category }}
+                        </span>
+                    </div>
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">{{ ev.title }}</div>
+                    {% if ev.location %}
+                    <div style="font-size: 12px; color: #666;">📍 {{ ev.location }}</div>
+                    {% endif %}
+                    {% if ev.description %}
+                    <div style="font-size: 12px; color: #444; margin-top: 4px;">{{ ev.description }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 3 de 14 • Agenda Dia a Dia</span>
+                <span>Segue na pág. 4: Política Nacional</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 4: POLÍTICA NACIONAL -->
+        <article class="journal-page" id="page-4">
+            <header class="page-header">
+                <span>Caderno de Política & Instituições</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 4</span>
+            </header>
+
+            <div class="section-title">POLÍTICA, REFORMAS & ESTABILIDADE INSTITUCIONAL</div>
+
+            <div style="margin-bottom: 12px;">
+                <h1 style="font-size: 26px; font-weight: 800; margin-bottom: 6px;">{{ data.politics_world.headline }}</h1>
+                <div class="lead-subdeck" style="text-align: left; padding: 0;">{{ data.politics_world.subdeck }}</div>
+                {% if data.politics_world.provenance %}
+                <div class="provenance-badge {{ data.politics_world.provenance.type }}">
+                    {% if data.politics_world.provenance.type == 'news' %}🌐{% elif data.politics_world.provenance.type == 'ai_editorial' %}🤖{% else %}✍️{% endif %}
+                    Fonte: {{ data.politics_world.provenance.source_name }} • Por {{ data.politics_world.provenance.author_name }}
+                    {% if data.politics_world.provenance.url %}<a href="{{ data.politics_world.provenance.url }}" target="_blank">[Matéria Original ↗]</a>{% endif %}
+                </div>
+                {% else %}
+                <div class="byline">Por Correspondente de Assuntos Institucionais em Brasília</div>
+                {% endif %}
+            </div>
+
+            <div class="columns-2" style="flex: 1;">
+                <p class="drop-cap">{{ data.politics_world.main_article }}</p>
+
+                {% if data.politics_world.context_box %}
+                <div class="context-box">
+                    <div class="context-box-title">✦ {{ data.politics_world.context_box.title }}</div>
+                    <ul>
+                        {% for pt in data.politics_world.context_box.points %}
+                        <li>{{ pt }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if data.politics_world.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                    {% for r in data.politics_world.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 4 de 14 • Política Nacional</span>
+                <span>Segue na pág. 5: Radar Internacional</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 5: INTERNACIONAL -->
+        <article class="journal-page" id="page-5">
+            <header class="page-header">
+                <span>Caderno Internacional</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 5</span>
+            </header>
+
+            <div class="section-title">PANORAMA GLOBAL, DIPLOMACIA & MERCADOS</div>
+
+            {% if images and images.international %}
+            <figure class="newspaper-figure" style="margin-bottom: 14px;">
+                <img src="{{ images.international.url }}" alt="{{ images.international.caption }}" style="max-height: 280px;">
+                <figcaption>
+                    <span class="caption-text">{{ images.international.caption }}</span>
+                    <span class="photo-credit">{{ images.international.credit }}</span>
+                </figcaption>
+            </figure>
+            {% endif %}
+
+            <div class="columns-3" style="margin-bottom: 18px;">
+                {% for brief in data.politics_world.briefs %}
+                <div style="border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 10px;">
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">{{ brief.title }}</h4>
+                    <p style="font-size: 13px; color: #333;">{{ brief.text }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if news_items %}
+            <div style="border-top: 2px solid #222; padding-top: 10px; flex: 1;">
+                <div class="section-title" style="font-size: 15px; margin-bottom: 8px;">DESPACHOS DAS AGÊNCIAS GLOBAIS AO VIVO (RSS)</div>
+                <div class="columns-2">
+                    {% for item in news_items[:6] %}
+                    <div style="margin-bottom: 8px; border-bottom: 1px dotted #ccc; padding-bottom: 6px;">
+                        <strong style="font-size: 13px;">• {{ item.title }}</strong>
+                        <span style="font-size: 11px; color: #666;">({{ item.source }})</span>
+                        <p style="font-size: 12px; color: #444; margin-top: 2px;">{{ item.summary }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 5 de 14 • Relações Internacionais</span>
+                <span>Segue na pág. 6: Tecnologia & IA</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 6: TECNOLOGIA & IA -->
+        <article class="journal-page" id="page-6">
+            <header class="page-header">
+                <span>Caderno de Tecnologia, Dados & Futuro</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 6</span>
+            </header>
+
+            <div class="section-title">SISTEMAS AUTÔNOMOS, ENGENHARIA DE DADOS & IA</div>
+
+            <div style="margin-bottom: 10px;">
+                <h1 style="font-size: 25px; font-weight: 800; margin-bottom: 4px;">{{ data.tech_ai.headline }}</h1>
+                <div class="byline">{{ data.tech_ai.byline }}</div>
+                {% if data.tech_ai.provenance %}
+                <div class="provenance-badge {{ data.tech_ai.provenance.type }}">
+                    🤖 {{ data.tech_ai.provenance.source_name }} • {{ data.tech_ai.provenance.author_name }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="columns-2" style="flex: 1;">
+                <p class="drop-cap">{{ data.tech_ai.article }}</p>
+
+                {% if data.tech_ai.context_box %}
+                <div class="context-box">
+                    <div class="context-box-title">✦ {{ data.tech_ai.context_box.title }}</div>
+                    <ul>
+                        {% for pt in data.tech_ai.context_box.points %}
+                        <li>{{ pt }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if data.tech_ai.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                    {% for r in data.tech_ai.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 6 de 14 • Tecnologia & IA</span>
+                <span>Segue na pág. 7: Op-Ed & Opinião</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 7: OP-ED -->
+        <article class="journal-page" id="page-7">
+            <header class="page-header">
+                <span>Caderno de Opinião & Ensaios (Op-Ed)</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 7</span>
+            </header>
+
+            <div class="section-title">PENSAMENTO CRÍTICO & FILOSOFIA CONTEMPORÂNEA</div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px; flex: 1;">
+                <div>
+                    <h2 style="font-size: 19px; font-weight: bold; margin-bottom: 4px;">{{ data.oped.column_1.title }}</h2>
+                    <div class="byline">{{ data.oped.column_1.author }}</div>
+                    {% if data.oped.column_1.provenance %}
+                    <div class="provenance-badge {{ data.oped.column_1.provenance.type }}">
+                        {% if data.oped.column_1.provenance.type == 'academic' %}🏛️ Artigo Acadêmico / Acervo:
+                        {% elif data.oped.column_1.provenance.type == 'essay' %}✍️ Ensaio Cultural:
+                        {% elif data.oped.column_1.provenance.type == 'news' %}🌐 Matéria Oficial:
+                        {% else %}✍️ Ensaio Autêntico:{% endif %}
+                        {{ data.oped.column_1.provenance.source_name }} • {{ data.oped.column_1.provenance.author_name }}
+                        {% if data.oped.column_1.provenance.url %}<a href="{{ data.oped.column_1.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Acessar ↗]</a>{% endif %}
+                    </div>
+                    {% endif %}
+                    <div class="pull-quote">{{ data.oped.column_1.pull_quote }}</div>
+                    <p class="drop-cap">{{ data.oped.column_1.text }}</p>
+                    {% if data.oped.column_1.recommended_readings %}
+                    <div class="readings-box">
+                        <div class="readings-title">📖 LEITURA SUGERIDA:</div>
+                        {% for r in data.oped.column_1.recommended_readings %}
+                        <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div>
+                    <h2 style="font-size: 19px; font-weight: bold; margin-bottom: 4px;">{{ data.oped.column_2.title }}</h2>
+                    <div class="byline">{{ data.oped.column_2.author }}</div>
+                    {% if data.oped.column_2.provenance %}
+                    <div class="provenance-badge {{ data.oped.column_2.provenance.type }}">
+                        {% if data.oped.column_2.provenance.type == 'academic' %}🏛️ Artigo Acadêmico / Acervo:
+                        {% elif data.oped.column_2.provenance.type == 'essay' %}✍️ Ensaio Cultural:
+                        {% elif data.oped.column_2.provenance.type == 'news' %}🌐 Matéria Oficial:
+                        {% else %}✍️ Ensaio Autêntico:{% endif %}
+                        {{ data.oped.column_2.provenance.source_name }} • {{ data.oped.column_2.provenance.author_name }}
+                        {% if data.oped.column_2.provenance.url %}<a href="{{ data.oped.column_2.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Acessar ↗]</a>{% endif %}
+                    </div>
+                    {% endif %}
+                    <div class="pull-quote">{{ data.oped.column_2.pull_quote }}</div>
+                    <p class="drop-cap">{{ data.oped.column_2.text }}</p>
+                    {% if data.oped.column_2.recommended_readings %}
+                    <div class="readings-box">
+                        <div class="readings-title">📖 LEITURA SUGERIDA:</div>
+                        {% for r in data.oped.column_2.recommended_readings %}
+                        <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 7 de 14 • Op-Ed & Ensaios</span>
+                <span>Segue na pág. 8: História Geral</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 8: POLÍTICA DE SÃO PAULO -->
+        <article class="journal-page" id="page-8">
+            <header class="page-header">
+                <span>Caderno de Política & Gestão Paulista</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 8</span>
+            </header>
+
+            <div class="section-title">PODER & DECISÕES: ALESP, BANDEIRANTES & CAPITAIS</div>
+
+            <div style="margin-bottom: 12px;">
+                <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 4px;">{{ data.sp_politics.headline }}</h2>
+                <div class="byline">{{ data.sp_politics.byline }}</div>
+                {% if data.sp_politics.provenance %}
+                <div class="provenance-badge {{ data.sp_politics.provenance.type }}">
+                    🌐 Fonte Oficial: {{ data.sp_politics.provenance.source_name }} • Por {{ data.sp_politics.provenance.author_name }}
+                    {% if data.sp_politics.provenance.url %}<a href="{{ data.sp_politics.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Matéria Original ↗]</a>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            {% if images and (images.sp_politics or images.history) %}
+            <figure class="newspaper-figure" style="margin-bottom: 14px;">
+                <img src="{{ (images.sp_politics or images.history).url }}" alt="{{ (images.sp_politics or images.history).caption }}" style="max-height: 290px;">
+                <figcaption>
+                    <span class="caption-text">{{ (images.sp_politics or images.history).caption }}</span>
+                    <span class="photo-credit">{{ (images.sp_politics or images.history).credit }}</span>
+                </figcaption>
+            </figure>
+            {% endif %}
+
+            <div class="columns-2" style="flex: 1;">
+                <p class="drop-cap">{{ data.sp_politics.article }}</p>
+
+                {% if data.sp_politics.context_box %}
+                <div class="context-box">
+                    <div class="context-box-title">✦ {{ data.sp_politics.context_box.title }}</div>
+                    <ul>
+                        {% for pt in data.sp_politics.context_box.points %}
+                        <li>{{ pt }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if data.sp_politics.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                    {% for r in data.sp_politics.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 8 de 14 • Política de São Paulo</span>
+                <span>Segue na pág. 9: Economia Nacional</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 9: ECONOMIA NACIONAL -->
+        <article class="journal-page" id="page-9">
+            <header class="page-header">
+                <span>Caderno de Economia & Finanças Públicas</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 9</span>
+            </header>
+
+            <div class="section-title">MACROECONOMIA: JUROS, CRÉDITO & DESENVOLVIMENTO</div>
+
+            <div style="margin-bottom: 12px;">
+                <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 4px;">{{ data.national_economy.headline }}</h2>
+                <div class="byline">{{ data.national_economy.byline }}</div>
+                {% if data.national_economy.provenance %}
+                <div class="provenance-badge {{ data.national_economy.provenance.type }}">
+                    🌐 Fonte Oficial: {{ data.national_economy.provenance.source_name }} • Por {{ data.national_economy.provenance.author_name }}
+                    {% if data.national_economy.provenance.url %}<a href="{{ data.national_economy.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Matéria Original ↗]</a>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            {% if images and (images.national_economy or images.fashion) %}
+            <figure class="newspaper-figure" style="margin-bottom: 14px;">
+                <img src="{{ (images.national_economy or images.fashion).url }}" alt="{{ (images.national_economy or images.fashion).caption }}" style="max-height: 290px;">
+                <figcaption>
+                    <span class="caption-text">{{ (images.national_economy or images.fashion).caption }}</span>
+                    <span class="photo-credit">{{ (images.national_economy or images.fashion).credit }}</span>
+                </figcaption>
+            </figure>
+            {% endif %}
+
+            <div class="columns-2" style="flex: 1;">
+                <p class="drop-cap">{{ data.national_economy.article }}</p>
+
+                {% if data.national_economy.context_box %}
+                <div class="context-box">
+                    <div class="context-box-title">✦ {{ data.national_economy.context_box.title }}</div>
+                    <ul>
+                        {% for pt in data.national_economy.context_box.points %}
+                        <li>{{ pt }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if data.national_economy.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                    {% for r in data.national_economy.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 9 de 14 • Economia Nacional</span>
+                <span>Segue na pág. 10: Geopolítica Global</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 10: GEOPOLÍTICA & MUNDO -->
+        <article class="journal-page" id="page-10">
+            <header class="page-header">
+                <span>Caderno de Geopolítica & Assuntos Globais</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 10</span>
+            </header>
+
+            <div class="section-title">MUNDO EM FOCO: CONFLITOS, ALIANÇAS & DIPLOMACIA</div>
+
+            <div style="margin-bottom: 10px;">
+                <h2 style="font-size: 23px; font-weight: 800; margin-bottom: 4px;">{{ data.world_geopolitics.headline }}</h2>
+                <div class="byline">{{ data.world_geopolitics.byline }}</div>
+                {% if data.world_geopolitics.provenance %}
+                <div class="provenance-badge {{ data.world_geopolitics.provenance.type }}">
+                    🌐 Fonte Oficial: {{ data.world_geopolitics.provenance.source_name }} • Por {{ data.world_geopolitics.provenance.author_name }}
+                    {% if data.world_geopolitics.provenance.url %}<a href="{{ data.world_geopolitics.provenance.url }}" target="_blank" style="color: inherit; text-decoration: underline;">[Matéria Original ↗]</a>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            {% if images and (images.world_geopolitics or images.jewelry) %}
+            <figure class="newspaper-figure side-figure">
+                <img src="{{ (images.world_geopolitics or images.jewelry).url }}" alt="{{ (images.world_geopolitics or images.jewelry).caption }}">
+                <figcaption>
+                    <span class="caption-text">{{ (images.world_geopolitics or images.jewelry).caption }}</span>
+                    <span class="photo-credit">{{ (images.world_geopolitics or images.jewelry).credit }}</span>
+                </figcaption>
+            </figure>
+            {% endif %}
+
+            <div class="columns-2" style="margin-bottom: 20px;">
+                <p class="drop-cap">{{ data.world_geopolitics.article }}</p>
+
+                {% if data.world_geopolitics.context_box %}
+                <div class="context-box">
+                    <div class="context-box-title">✦ {{ data.world_geopolitics.context_box.title }}</div>
+                    <ul>
+                        {% for pt in data.world_geopolitics.context_box.points %}
+                        <li>{{ pt }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if data.world_geopolitics.recommended_readings %}
+                <div class="readings-box">
+                    <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                    {% for r in data.world_geopolitics.recommended_readings %}
+                    <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 10 de 14 • Mundo & Geopolítica</span>
+                <span>Segue na pág. 11: Guia Metrópole SP</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 11: METRÓPOLE SP -->
+        <article class="journal-page" id="page-11">
+            <header class="page-header">
+                <span>Caderno Paulistano</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 11</span>
+            </header>
+
+            <div class="section-title">{{ data.lifestyle_sp.section_title }}</div>
+            <div class="lead-subdeck" style="text-align: left; padding: 0;">{{ data.lifestyle_sp.section_intro }}</div>
+
+            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; flex: 1;">
+                <div>
+                    <h3 style="font-size: 17px; border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 12px;">
+                        MESA & DEGUSTAÇÃO: RESTAURANTES & CAFÉS ({{ data.lifestyle_sp.gastronomy|length }})
+                    </h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        {% for rest in data.lifestyle_sp.gastronomy %}
+                        <div class="sp-card" style="margin-bottom: 8px;">
+                            <h4>{{ rest.name }} <span style="font-size: 11px; font-weight: normal; color: #666;">({{ rest.neighborhood }})</span></h4>
+                            {% if rest.type %}<div style="font-size: 10px; font-family: 'PT Sans'; text-transform: uppercase; color: #1a365d; font-weight: bold; margin-bottom: 4px;">{{ rest.type }}</div>{% endif %}
+                            <p style="font-size: 12px; margin-bottom: 4px; line-height: 1.35;">{{ rest.highlight }}</p>
+                            {% if rest.dish %}<div style="font-size: 11px; color: #800020; margin-bottom: 2px;">🍽️ <strong>Sugestão:</strong> {{ rest.dish }}</div>{% endif %}
+                            {% if rest.hours %}<div style="font-size: 10px; color: #666; margin-bottom: 4px;">⏰ {{ rest.hours }}</div>{% endif %}
+                            {% if rest.map_url %}
+                            <a href="{{ rest.map_url }}" target="_blank" class="map-btn" style="font-size: 11px; padding: 4px 8px;">📍 Abrir no Google Maps →</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 17px; border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 12px;">
+                        EXPOSIÇÕES, ACERVOS & CAMINHADAS ({{ data.lifestyle_sp.walks|length }})
+                    </h3>
+                    {% if images and images.lifestyle_sp %}
+                    <figure class="newspaper-figure" style="margin-bottom: 12px;">
+                        <img src="{{ images.lifestyle_sp.url }}" alt="{{ images.lifestyle_sp.caption }}" style="max-height: 180px;">
+                        <figcaption>
+                            <span class="caption-text">{{ images.lifestyle_sp.caption }}</span>
+                            <span class="photo-credit">{{ images.lifestyle_sp.credit }}</span>
+                        </figcaption>
+                    </figure>
+                    {% endif %}
+
+                    {% for walk in data.lifestyle_sp.walks %}
+                    <div class="sp-card walk" style="margin-bottom: 8px;">
+                        <h4>
+                            {{ walk.title }}
+                            {% if walk.institution %}<span style="font-size: 11px; font-weight: normal; color: #666;">({{ walk.institution }})</span>{% endif %}
+                        </h4>
+                        <p style="font-size: 12px; margin-bottom: 4px; line-height: 1.35;"><strong>Foco:</strong> {{ walk.itinerary }}</p>
+                        <div style="font-size: 11px; color: #444; margin-bottom: 2px;">💡 <strong>Dica:</strong> {{ walk.tip }}</div>
+                        {% if walk.hours %}<div style="font-size: 10px; color: #666; margin-bottom: 4px;">⏰ {{ walk.hours }}</div>{% endif %}
+                        {% if walk.map_url %}
+                        <a href="{{ walk.map_url }}" target="_blank" class="map-btn" style="font-size: 11px; padding: 4px 8px;">📍 Ver Trajeto no Google Maps →</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <div style="border: 1px solid #333; padding: 12px; background: #faf8f2; text-align: center; margin-top: 14px;">
+                        <p style="font-style: italic; font-size: 13px; margin: 0;">{{ data.metadata.quote }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 11 de 14 • Metrópole SP</span>
+                <span>Segue na pág. 12: Ofícios, Oportunidades & Curiosidades</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 12: CADERNO DE OFÍCIOS, OPORTUNIDADES & CURIOSIDADES -->
+        <article class="journal-page" id="page-12">
+            <header class="page-header">
+                <span>Caderno Especial: Ofícios de Arte & Patrimônio</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 12</span>
+            </header>
+
+            <div class="section-title">{{ data.crafts_careers.title }}</div>
+            <div class="lead-subdeck" style="text-align: left; padding: 0; margin-bottom: 14px; font-size: 14px;">
+                {{ data.crafts_careers.subtitle }}
+            </div>
+
+            <div class="columns-2" style="flex: 1; gap: 32px;">
+                <div>
+                    {% if data.crafts_careers.three_blocks %}
+                    <!-- Bloco 1: Concursos Públicos & Editais Oficiais -->
+                    <div style="margin-bottom: 16px;">
+                        <h3 style="font-size: 14px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #1a365d; padding-bottom: 4px; margin-bottom: 10px; color: #1a365d;">
+                            🏛️ Concursos Públicos & Editais de Salvaguarda
+                        </h3>
+                        {% for opp in data.crafts_careers.three_blocks.public_contests %}
+                        <div class="opportunity-card" style="margin-bottom: 10px; padding: 10px 12px;">
+                            {% if opp.verified_badge %}<div style="font-size: 11px; color: #15803d; font-weight: bold; margin-bottom: 4px; text-transform: uppercase;">{{ opp.verified_badge }}</div>{% endif %}
+                            <div class="opportunity-title" style="font-size: 14px; font-weight: bold;">{{ opp.role }}</div>
+                            <div class="opportunity-inst" style="font-size: 12px; color: #444;">{{ opp.institution }} • <em>{{ opp.location }}</em></div>
+                            {% if opp.salary %}<div style="font-size: 11.5px; color: #1b5e20; font-weight: bold; margin-top: 2px;">💰 {{ opp.salary }}</div>{% endif %}
+                            {% if opp.date %}<div style="font-size: 11px; color: #555; margin-bottom: 3px;">📅 {{ opp.date }} ({{ opp.type }})</div>{% endif %}
+                            <div class="opportunity-scope" style="font-size: 11.5px; margin-top: 2px;"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                            <div class="opportunity-req" style="font-size: 11px;"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                            {% if opp.url %}
+                            <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn" style="display: inline-block; margin-top: 6px;">🔗 {{ opp.link_label or 'Acessar Edital Oficial →' }}</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Bloco 2: Conservação & Restauro em Acervos -->
+                    <div>
+                        <h3 style="font-size: 14px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #5c3a21; padding-bottom: 4px; margin-bottom: 10px; color: #5c3a21;">
+                            🖼️ Conservação & Restauro em Acervos
+                        </h3>
+                        {% for opp in data.crafts_careers.three_blocks.conservation_acervo %}
+                        <div class="opportunity-card" style="margin-bottom: 10px; padding: 10px 12px;">
+                            {% if opp.verified_badge %}<div style="font-size: 11px; color: #15803d; font-weight: bold; margin-bottom: 4px; text-transform: uppercase;">{{ opp.verified_badge }}</div>{% endif %}
+                            <div class="opportunity-title" style="font-size: 14px; font-weight: bold;">{{ opp.role }}</div>
+                            <div class="opportunity-inst" style="font-size: 12px; color: #444;">{{ opp.institution }} • <em>{{ opp.location }}</em></div>
+                            {% if opp.salary %}<div style="font-size: 11.5px; color: #1b5e20; font-weight: bold; margin-top: 2px;">💰 {{ opp.salary }}</div>{% endif %}
+                            {% if opp.date %}<div style="font-size: 11px; color: #555; margin-bottom: 3px;">📅 {{ opp.date }} ({{ opp.type }})</div>{% endif %}
+                            <div class="opportunity-scope" style="font-size: 11.5px; margin-top: 2px;"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                            <div class="opportunity-req" style="font-size: 11px;"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                            {% if opp.url %}
+                            <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn" style="display: inline-block; margin-top: 6px;">🔗 {{ opp.link_label or 'Ver Processo Seletivo →' }}</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <h3 style="font-size: 15px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #222; padding-bottom: 4px; margin-bottom: 12px;">
+                        Oportunidades em Aberto • Conservação & Joalheria
+                    </h3>
+                    {% for opp in data.crafts_careers.opportunities %}
+                    <div class="opportunity-card">
+                        <div class="opportunity-title">{{ opp.role }}</div>
+                        <div class="opportunity-inst">{{ opp.institution }} • <em>{{ opp.location }}</em> ({{ opp.type }})</div>
+                        {% if opp.date %}<div style="font-size: 11px; color: #555; margin-bottom: 3px;">📅 <strong>Publicação:</strong> {{ opp.date }}</div>{% endif %}
+                        <div class="opportunity-scope"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                        <div class="opportunity-req"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                        {% if opp.url %}
+                        <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn">🔗 {{ opp.link_label or 'Ver Vaga / Edital →' }}</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div>
+                    <!-- Bloco 3: Bancada, Ourivesaria & Alta Joalheria -->
+                    {% if data.crafts_careers.three_blocks and data.crafts_careers.three_blocks.jewelry_atelier %}
+                    <div style="margin-bottom: 16px;">
+                        <h3 style="font-size: 14px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #800020; padding-bottom: 4px; margin-bottom: 10px; color: #800020;">
+                            💎 Bancada, Ourivesaria & Alta Joalheria
+                        </h3>
+                        {% for opp in data.crafts_careers.three_blocks.jewelry_atelier %}
+                        <div class="opportunity-card" style="margin-bottom: 10px; padding: 10px 12px;">
+                            {% if opp.verified_badge %}<div style="font-size: 11px; color: #15803d; font-weight: bold; margin-bottom: 4px; text-transform: uppercase;">{{ opp.verified_badge }}</div>{% endif %}
+                            <div class="opportunity-title" style="font-size: 14px; font-weight: bold;">{{ opp.role }}</div>
+                            <div class="opportunity-inst" style="font-size: 12px; color: #444;">{{ opp.institution }} • <em>{{ opp.location }}</em></div>
+                            {% if opp.salary %}<div style="font-size: 11.5px; color: #1b5e20; font-weight: bold; margin-top: 2px;">💰 {{ opp.salary }}</div>{% endif %}
+                            {% if opp.date %}<div style="font-size: 11px; color: #555; margin-bottom: 3px;">📅 {{ opp.date }} ({{ opp.type }})</div>{% endif %}
+                            <div class="opportunity-scope" style="font-size: 11.5px; margin-top: 2px;"><strong>Atuação:</strong> {{ opp.scope }}</div>
+                            <div class="opportunity-req" style="font-size: 11px;"><strong>Requisitos:</strong> {{ opp.requirements }}</div>
+                            {% if opp.url %}
+                            <a href="{{ opp.url }}" target="_blank" rel="noopener noreferrer" class="opportunity-btn" style="display: inline-block; margin-top: 6px;">🔗 {{ opp.link_label or 'Canal de Vagas AJESP →' }}</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if images and images.crafts_careers %}
+                    <figure class="newspaper-figure" style="margin-top: 0; margin-bottom: 16px;">
+                        <img src="{{ images.crafts_careers.url }}" alt="{{ images.crafts_careers.caption }}" style="max-height: 260px;">
+                        <figcaption>
+                            <span class="caption-text">{{ images.crafts_careers.caption }}</span>
+                            {% if images.crafts_careers.credit %}
+                            <span class="photo-credit">{{ images.crafts_careers.credit }}</span>
+                            {% endif %}
+                        </figcaption>
+                    </figure>
+                    {% endif %}
+
+                    <h3 style="font-size: 15px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #222; padding-bottom: 4px; margin-bottom: 12px;">
+                        Fatos Curiosos • Ciência dos Materiais & Ateliê
+                    </h3>
+                    {% for cur in data.crafts_careers.curiosities %}
+                    <div class="curiosity-item">
+                        <h4>✦ {{ cur.topic or cur.title }}</h4>
+                        <p>{{ cur.fact or cur.text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 12 de 14 • Ofícios, Restauro & Joalheria</span>
+                <span>Segue na pág. 13: Palavras Cruzadas</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 13: THE NYT CROSSWORD (PALAVRAS CRUZADAS INTERATIVAS) -->
+        <article class="journal-page" id="page-13">
+            <header class="page-header">
+                <span>Caderno de Palavras Cruzadas</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 13</span>
+            </header>
+
+            <div class="section-title">{{ data.crossword.title }}</div>
+            <p style="font-size: 14px; margin-bottom: 8px;">{{ data.crossword.instructions }}</p>
+
+            <div style="background: #f4f1ea; border: 2px solid #222; padding: 20px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; flex: 1;">
+                <div style="text-align: center;">
+                    <div style="font-family: 'PT Sans'; font-size: 14px; font-weight: bold; color: var(--accent-burgundy); margin-bottom: 10px;" id="crossword-status">
+                        Palavras Cruzadas estilo The New York Times
+                    </div>
+                    <p style="font-size: 12px; color: #555; margin-bottom: 12px;">Clique na célula e digite a letra. Use as setas para navegar.</p>
+
+                    <table style="border-collapse: collapse; margin: 0 auto; background: #000; border: 2px solid #000;" id="crossword-grid">
+                        {% for row_idx in range(crossword.size) %}
+                        <tr>
+                            {% for col_idx in range(crossword.size) %}
+                            {% set cell_letter = crossword.grid[row_idx][col_idx] %}
+                            {% set cell_num = crossword.numbers[row_idx][col_idx] %}
+                            <td style="width: 36px; height: 36px; position: relative; border: 1px solid #333; background: {% if cell_letter == '' %}#111{% else %}#fff{% endif %}; padding: 0;">
+                                {% if cell_letter != '' %}
+                                    {% if cell_num > 0 %}
+                                    <span style="position: absolute; top: 1px; left: 2px; font-size: 8px; font-weight: bold; color: #555; pointer-events: none;">{{ cell_num }}</span>
+                                    {% endif %}
+                                    <input type="text" maxlength="1" 
+                                           style="width: 100%; height: 100%; border: none; text-align: center; font-family: 'PT Sans', sans-serif; font-size: 18px; font-weight: bold; text-transform: uppercase; background: transparent; outline: none; padding-top: 6px;"
+                                           data-row="{{ row_idx }}" data-col="{{ col_idx }}" data-expected="{{ cell_letter }}" class="crossword-input">
+                                 {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+                        <button type="button" id="btn-check-crossword" style="background: #1a365d; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer;">
+                            ✓ Verificar Respostas
+                        </button>
+                        <button type="button" id="btn-reveal-crossword" style="background: #444; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer;">
+                            👁 Revelar Solução
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="margin-bottom: 16px;">
+                        <h4 style="font-size: 14px; font-weight: bold; border-bottom: 2px solid #333; padding-bottom: 3px; margin-bottom: 8px;">HORIZONTAIS</h4>
+                        <div style="font-size: 13px; color: #222; line-height: 1.4;">
+                            {% for w in crossword.across %}
+                            <div style="margin-bottom: 6px;">
+                                <strong>{{ w.num }}.</strong> 
+                                {% if w.category %}<span style="font-size: 10px; text-transform: uppercase; color: #1a365d; font-weight: bold;">[{{ w.category }} • {{ w.difficulty }}]</span>{% endif %}
+                                {{ w.clue }} ({{ w.clean|length }} letras)
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="font-size: 14px; font-weight: bold; border-bottom: 2px solid #333; padding-bottom: 3px; margin-bottom: 8px;">VERTICAIS</h4>
+                        <div style="font-size: 13px; color: #222; line-height: 1.4;">
+                            {% for w in crossword.down %}
+                            <div style="margin-bottom: 6px;">
+                                <strong>{{ w.num }}.</strong> 
+                                {% if w.category %}<span style="font-size: 10px; text-transform: uppercase; color: #1a365d; font-weight: bold;">[{{ w.category }} • {{ w.difficulty }}]</span>{% endif %}
+                                {{ w.clue }} ({{ w.clean|length }} letras)
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 13 de 14 • Palavras Cruzadas</span>
+                <span>Segue na pág. 14: O Grande Caça-Palavras</span>
+            </footer>
+        </article>
+
+        <!-- PÁGINA 14: O GRANDE CAÇA-PALAVRAS -->
+        <article class="journal-page" id="page-14">
+            <header class="page-header">
+                <span>Caderno de Lazer & Passatempos</span>
+                <span>The Personal Dispatch</span>
+                <span>Página 14</span>
+            </header>
+
+            <div class="section-title">{{ data.games_diversions.title }}</div>
+            <p style="font-size: 14px; margin-bottom: 10px;">{{ data.games_diversions.instructions }}</p>
+
+            <div class="puzzle-section" style="flex: 1;">
+                <div style="font-family: 'PT Sans'; font-size: 14px; font-weight: bold; color: var(--accent-burgundy);" id="status-banner">
+                    Palavras encontradas: <span id="found-count">0</span> de {{ word_search.placed_words|length }}
+                </div>
+                <p style="font-size: 12px; color: #555; margin-top: 4px;">Clique na primeira letra e depois na última letra da palavra na grade para marcar.</p>
+
+                <table class="grid-table" id="interactive-grid">
+                    {% for row_idx in range(word_search.size) %}
+                    <tr>
+                        {% for col_idx in range(word_search.size) %}
+                        <td data-row="{{ row_idx }}" data-col="{{ col_idx }}" data-char="{{ word_search.grid[row_idx][col_idx] }}">
+                            {{ word_search.grid[row_idx][col_idx] }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <div style="font-family: 'PT Sans'; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-top: 10px;">
+                    PALAVRAS TEMÁTICAS DA SEMANA:
+                </div>
+                <div class="words-checklist">
+                    {% for word in word_search.placed_words %}
+                    <span class="word-tag" data-clean="{{ word_search.solutions[loop.index0].clean }}">
+                        {{ word }}
+                    </span>
+                    {% endfor %}
+                </div>
+
+                {% if word_search.glossary %}
+                <div style="margin-top: 18px; border-top: 2px solid #222; padding-top: 10px;">
+                    <div style="font-family: 'PT Sans'; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: var(--accent-burgundy);">
+                        ✦ LÉXICO CULTURAL DOS PASSATEMPOS (MINI-GLOSSÁRIO)
+                    </div>
+                    <div class="glossary-grid" style="margin-top: 0; border-top: none; padding-top: 0;">
+                        {% for term, item in word_search.glossary.items() %}
+                        <div class="glossary-card">
+                            <div class="glossary-term">{{ term }} <span class="glossary-cat">({{ item.category }})</span></div>
+                            <div class="glossary-def">{{ item.definition }}</div>
+                            {% if item.etymology %}<div class="glossary-etym">✦ {{ item.etymology }}</div>{% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div style="margin-top: 25px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 11px; color: #777;">
+                    <details>
+                        <summary style="cursor: pointer; font-weight: bold;">Mostrar Gabarito do Caça-Palavras</summary>
+                        <p style="margin-top: 6px;">
+                            {% for sol in word_search.solutions %}
+                            <strong>{{ sol.word }}</strong>: (Linha {{ sol.start[0] }}, Coluna {{ sol.start[1] }}){% if not loop.last %} • {% endif %}
+                            {% endfor %}
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+            <footer class="footer-nav">
+                <span>The Personal Dispatch</span>
+                <span>Página 14 de 14 • Passatempos & Lazer</span>
+                <span>Fim da Edição Dominical</span>
+            </footer>
+        </article>
+
+    </main>
+
+    <script>
+        // Caça-Palavras
+        const solutions = {{ solutions_json|safe }};
+        let startCell = null;
+        let foundWords = new Set();
+
+        const grid = document.getElementById("interactive-grid");
+        const statusBanner = document.getElementById("status-banner");
+        const foundCountSpan = document.getElementById("found-count");
+
+        if (grid) {
+            grid.addEventListener("click", (e) => {
+                const cell = e.target.closest("td");
+                if (!cell) return;
+
+                if (!startCell) {
+                    startCell = cell;
+                    cell.classList.add("selected");
+                } else {
+                    const r1 = parseInt(startCell.dataset.row);
+                    const c1 = parseInt(startCell.dataset.col);
+                    const r2 = parseInt(cell.dataset.row);
+                    const c2 = parseInt(cell.dataset.col);
+
+                    checkSelection(r1, c1, r2, c2);
+                    startCell.classList.remove("selected");
+                    startCell = null;
+                }
+            });
+        }
+
+        function checkSelection(r1, c1, r2, c2) {
+            for (let i = 0; i < solutions.length; i++) {
+                const sol = solutions[i];
+                if (foundWords.has(sol.clean)) continue;
+
+                const sr = sol.start[0] - 1;
+                const sc = sol.start[1] - 1;
+                const len = sol.clean.length;
+                const er = sr + sol.direction[0] * (len - 1);
+                const ec = sc + sol.direction[1] * (len - 1);
+
+                if ((r1 === sr && c1 === sc && r2 === er && c2 === ec) ||
+                    (r1 === er && c1 === ec && r2 === sr && c2 === sc)) {
+                    
+                    highlightWord(sr, sc, sol.direction[0], sol.direction[1], len);
+                    foundWords.add(sol.clean);
+
+                    const item = document.querySelector(`.word-tag[data-clean="${sol.clean}"]`);
+                    if (item) item.classList.add("completed");
+
+                    foundCountSpan.innerText = foundWords.size;
+                    if (foundWords.size === solutions.length) {
+                        statusBanner.innerText = "🎉 Parabéns! Você encontrou todas as palavras do caça-palavras da semana!";
+                        statusBanner.style.color = "#15803d";
+                    } else {
+                        statusBanner.innerText = `✓ Palavra encontrada: ${sol.word}!`;
+                        statusBanner.style.color = "#15803d";
+                    }
+                    return;
+                }
+            }
+        }
+
+        function highlightWord(sr, sc, dr, dc, len) {
+            let r = sr;
+            let c = sc;
+            for (let i = 0; i < len; i++) {
+                const cell = document.querySelector(`#interactive-grid td[data-row="${r}"][data-col="${c}"]`);
+                if (cell) cell.classList.add("found");
+                r += dr;
+                c += dc;
+            }
+        }
+
+        // Palavras Cruzadas Interativas
+        const crosswordInputs = document.querySelectorAll(".crossword-input");
+        crosswordInputs.forEach(input => {
+            input.addEventListener("input", (e) => {
+                const val = input.value.toUpperCase();
+                input.value = val;
+                if (val) {
+                    // Avança automaticamente para o próximo campo da linha
+                    const r = parseInt(input.dataset.row);
+                    const c = parseInt(input.dataset.col);
+                    const next = document.querySelector(`.crossword-input[data-row="${r}"][data-col="${c + 1}"]`) ||
+                                 document.querySelector(`.crossword-input[data-row="${r + 1}"][data-col="${c}"]`);
+                    if (next) next.focus();
+                }
+            });
+
+            input.addEventListener("keydown", (e) => {
+                const r = parseInt(input.dataset.row);
+                const c = parseInt(input.dataset.col);
+                if (e.key === "Backspace" && !input.value) {
+                    const prev = document.querySelector(`.crossword-input[data-row="${r}"][data-col="${c - 1}"]`) ||
+                                 document.querySelector(`.crossword-input[data-row="${r - 1}"][data-col="${c}"]`);
+                    if (prev) prev.focus();
+                } else if (e.key === "ArrowRight") {
+                    const next = document.querySelector(`.crossword-input[data-row="${r}"][data-col="${c + 1}"]`);
+                    if (next) next.focus();
+                } else if (e.key === "ArrowLeft") {
+                    const prev = document.querySelector(`.crossword-input[data-row="${r}"][data-col="${c - 1}"]`);
+                    if (prev) prev.focus();
+                } else if (e.key === "ArrowDown") {
+                    const next = document.querySelector(`.crossword-input[data-row="${r + 1}"][data-col="${c}"]`);
+                    if (next) next.focus();
+                } else if (e.key === "ArrowUp") {
+                    const prev = document.querySelector(`.crossword-input[data-row="${r - 1}"][data-col="${c}"]`);
+                    if (prev) prev.focus();
+                }
+            });
+        });
+
+        const btnCheck = document.getElementById("btn-check-crossword");
+        const btnReveal = document.getElementById("btn-reveal-crossword");
+        const cwStatus = document.getElementById("crossword-status");
+
+        if (btnCheck) {
+            btnCheck.addEventListener("click", () => {
+                let allCorrect = true;
+                let filled = 0;
+                crosswordInputs.forEach(input => {
+                    const userVal = input.value.trim().toUpperCase();
+                    const expected = input.dataset.expected;
+                    if (userVal) filled++;
+                    if (userVal === expected) {
+                        input.style.backgroundColor = "#d9f99d";
+                        input.style.color = "#15803d";
+                    } else if (userVal) {
+                        input.style.backgroundColor = "#fecaca";
+                        input.style.color = "#b91c1c";
+                        allCorrect = false;
+                    } else {
+                        allCorrect = false;
+                    }
+                });
+                if (allCorrect && filled === crosswordInputs.length) {
+                    cwStatus.innerText = "🎉 Brilhante! Você acertou todas as palavras cruzadas!";
+                    cwStatus.style.color = "#15803d";
+                } else {
+                    cwStatus.innerText = `Letras corretas marcadas em verde. Continue!`;
+                    cwStatus.style.color = "#1a365d";
+                }
+            });
+        }
+
+        if (btnReveal) {
+            btnReveal.addEventListener("click", () => {
+                crosswordInputs.forEach(input => {
+                    input.value = input.dataset.expected;
+                    input.style.backgroundColor = "#e0f2fe";
+                    input.style.color = "#0369a1";
+                });
+                cwStatus.innerText = "Solução revelada na grade.";
+                cwStatus.style.color = "#555";
+            });
+        }
+    </script>
+</body>
+</html>

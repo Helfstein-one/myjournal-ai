@@ -1,0 +1,789 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=PT+Sans:wght@400;700&display=swap');
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fdfbf7;
+    color: #111111;
+    font-family: 'Lora', 'Georgia', serif;
+    font-size: 8.7pt;
+    line-height: 1.38;
+}
+
+.page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    page-break-inside: avoid;
+    padding: 10mm 12mm 10mm 12mm;
+    background-color: #fdfbf7;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Page Headers & Ears */
+.page-header {
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 7.2pt;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #333;
+}
+
+.masthead-container {
+    text-align: center;
+    border-bottom: 3px double #111;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+}
+
+.ears-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    padding: 2px 0;
+    border-bottom: 1px solid #222;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.ear-box {
+    max-width: 30%;
+    line-height: 1.2;
+}
+
+.main-masthead {
+    font-family: 'Playfair Display', 'Cinzel', serif;
+    font-size: 32pt;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin: 0;
+    text-transform: uppercase;
+    color: #0b0b0b;
+}
+
+.masthead-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 8.8pt;
+    color: #444;
+    margin-top: 1px;
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #222;
+    border-bottom: 2px solid #222;
+    padding: 2px 0;
+    margin-top: 4px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* Headings & Typography */
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    margin: 0;
+    color: #000;
+    line-height: 1.15;
+}
+
+.lead-headline {
+    font-size: 21pt;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.lead-subdeck {
+    font-size: 9.8pt;
+    font-style: italic;
+    text-align: center;
+    color: #333;
+    margin-bottom: 8px;
+    padding: 0 10px;
+    line-height: 1.25;
+}
+
+.section-title {
+    font-size: 13pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.article-title {
+    font-size: 12.5pt;
+    font-weight: 700;
+    margin-bottom: 3px;
+    line-height: 1.18;
+}
+
+.article-subdeck {
+    font-size: 8.2pt;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.byline {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 7pt;
+    text-transform: uppercase;
+    color: #666;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #e0dfdb;
+    padding-bottom: 2px;
+}
+
+.pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+    padding: 8px 12px;
+    margin: 10px 0;
+    line-height: 1.3;
+}
+
+p {
+    margin: 0 0 6px 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.drop-cap::first-letter {
+    float: left;
+    font-size: 3.2em;
+    line-height: 0.75;
+    padding-top: 3px;
+    padding-right: 5px;
+    padding-bottom: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #000;
+}
+
+/* Layout Columns */
+.columns-2 {
+    column-count: 2;
+    column-gap: 16px;
+    column-rule: 1px solid #e0dfdb;
+}
+
+.columns-3 {
+    column-count: 3;
+    column-gap: 13px;
+    column-rule: 1px solid #e0dfdb;
+}
+
+/* Agenda Page (Páginas 2 e 3) */
+.agenda-days-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 6px;
+}
+
+.agenda-day-card {
+    border: 1px solid #d8d4c9;
+    background: #fbf9f4;
+    padding: 6px 8px;
+    border-top: 3px solid #222;
+}
+
+.agenda-day-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 7.8pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
+
+.event-badge {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 1px 3px;
+    text-transform: uppercase;
+    color: #fff;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.badge-work { background: #1a365d; }
+.badge-personal { background: #553c9a; }
+
+/* Agenda Híbrida Estruturada (Cards com IA) */
+.agenda-days-structured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-top: 4px;
+    flex: 1;
+}
+
+.agenda-day-block {
+    background: #fbf9f4;
+    border: 1px solid #d8d4c9;
+    border-top: 2.5px solid #222;
+    padding: 5px 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+.agenda-day-header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2ded5;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+}
+
+.agenda-day-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 8.5pt;
+    font-weight: 800;
+    color: #111;
+}
+
+.agenda-demand-badge {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #222;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+    letter-spacing: 0.3px;
+}
+
+.agenda-day-advice {
+    font-family: 'Playfair Display', serif;
+    font-size: 6.8pt;
+    font-style: italic;
+    color: #444;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    padding-bottom: 2px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.agenda-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.agenda-event-card {
+    background: #ffffff;
+    border: 1px solid #e0dcd2;
+    border-left: 3px solid #553c9a;
+    padding: 3px 5px;
+}
+
+.agenda-event-card.card-work {
+    border-left-color: #1a365d;
+}
+
+.event-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.5pt;
+    margin-bottom: 1px;
+}
+
+.event-time-badge {
+    font-weight: 700;
+    color: #111;
+}
+
+.event-focus-tag {
+    font-weight: 700;
+    color: #444;
+    background: #f0ede4;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+.event-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 7.8pt;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.15;
+    margin-bottom: 1px;
+}
+
+.event-ai-summary {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.6pt;
+    color: #444;
+    line-height: 1.2;
+}
+
+.event-location-text {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6pt;
+    color: #666;
+    margin-top: 1px;
+}
+
+/* SP Page */
+.sp-card {
+    border-left: 2.5px solid #8c2d19;
+    padding-left: 8px;
+    margin-bottom: 8px;
+}
+
+.sp-card.walk {
+    border-left-color: #2b6cb0;
+}
+
+.sp-card h4 {
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.map-link-btn {
+    display: inline-block;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    font-weight: bold;
+    color: #1a365d;
+    text-decoration: underline;
+    margin-top: 2px;
+}
+
+/* Ofícios & Oportunidades (Página 12) */
+.opportunity-card {
+    border: 1px solid #dcd8ce;
+    background: #ffffff;
+    border-left: 3.5px solid #1a365d;
+    padding: 6px 8px;
+    margin-bottom: 7px;
+}
+
+.opportunity-card h4 {
+    font-size: 8.8pt;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2px;
+}
+
+.opportunity-inst {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.opportunity-scope {
+    font-size: 7.4pt;
+    color: #333;
+    margin-bottom: 3px;
+    line-height: 1.25;
+}
+
+.opportunity-req {
+    font-size: 6.8pt;
+    color: #555;
+    background: #f7f5ed;
+    padding: 2px 5px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.opportunity-btn {
+    display: inline-block;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 700;
+    color: #1a365d;
+    text-decoration: none;
+    border-bottom: 1px solid #1a365d;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.curiosity-item {
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 6px;
+}
+
+.curiosity-item h4 {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #8b2616;
+    margin-bottom: 2px;
+}
+
+.curiosity-item p {
+    font-size: 7.4pt;
+    color: #333;
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* Crossword Page (The NYT Crossword) */
+.crossword-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 16px;
+    align-items: start;
+    margin-top: 6px;
+}
+
+.crossword-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: #000;
+    border: 2px solid #000;
+}
+
+.crossword-table td {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    border: 1px solid #333;
+    background: #fff;
+    padding: 0;
+}
+
+.crossword-table td.block {
+    background: #111;
+}
+
+.crossword-num {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    font-size: 5.5pt;
+    font-weight: bold;
+    color: #444;
+    line-height: 1;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.clue-box {
+    margin-bottom: 8px;
+}
+
+.clue-box h4 {
+    font-size: 9pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
+
+.clue-list {
+    font-size: 7.5pt;
+    color: #222;
+    line-height: 1.3;
+}
+
+.clue-item {
+    margin-bottom: 3px;
+}
+
+/* Word Search Page */
+.word-search-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 16px;
+    align-items: start;
+    margin-top: 8px;
+}
+
+.grid-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid #222;
+}
+
+.grid-table td {
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'PT Sans', monospace;
+    font-size: 9pt;
+    font-weight: 700;
+    border: 1px solid #d4d0c7;
+    color: #111;
+}
+
+.words-checklist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 6px;
+}
+
+.word-tag {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 7.2pt;
+    font-weight: 700;
+    background: #ece8de;
+    padding: 2px 5px;
+    border: 1px solid #ccc7ba;
+}
+
+.footer-nav {
+    margin-top: auto;
+    border-top: 1px solid #111;
+    padding-top: 3px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    text-transform: uppercase;
+    color: #555;
+}
+
+/* Broadsheet Newspaper Figures (B&W High Contrast NYT / WSJ Style) */
+.newspaper-figure {
+    margin: 8px 0 10px 0;
+    padding: 0;
+    text-align: center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.newspaper-figure img {
+    width: 100%;
+    max-height: 230px;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(125%) brightness(96%);
+    border: 1px solid #111;
+    display: block;
+    background: #eae7df;
+}
+
+.newspaper-figure figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 4px;
+    font-family: 'Playfair Display', serif;
+    font-size: 7.5pt;
+    font-style: italic;
+    color: #222;
+    line-height: 1.25;
+    border-bottom: 1px solid #222;
+    padding-bottom: 3px;
+    text-align: left;
+}
+
+.newspaper-figure .photo-credit {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.5pt;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+    margin-left: 8px;
+    white-space: nowrap;
+}
+
+.hero-figure {
+    margin-bottom: 8px;
+}
+
+.hero-figure img {
+    max-height: 240px;
+}
+
+.side-figure {
+    float: right;
+    width: 46%;
+    margin: 0 0 8px 12px;
+}
+
+.side-figure img {
+    max-height: 170px;
+}
+
+/* Proveniência & Badges Editoriais */
+.provenance-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    background: #f1ede3;
+    border-left: 3px solid #111;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.provenance-badge.news { border-left-color: #8c2d19; }
+.provenance-badge.ai { border-left-color: #1a365d; }
+.provenance-badge.author { border-left-color: #2e7d32; }
+.provenance-badge a { color: inherit; text-decoration: underline; }
+
+/* Boxes de Contexto & Leituras Recomendadas */
+.context-box {
+    border: 1px solid #111;
+    background: #faf8f2;
+    padding: 6px 8px;
+    margin: 8px 0;
+}
+
+.context-box-title {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 7.2pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: 1px solid #111;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+    color: #111;
+}
+
+.context-box ul {
+    margin: 0;
+    padding-left: 12px;
+    font-size: 7pt;
+    color: #333;
+    line-height: 1.3;
+}
+
+.context-box li {
+    margin-bottom: 2px;
+}
+
+.readings-box {
+    border-top: 1px dashed #777;
+    margin-top: 8px;
+    padding-top: 4px;
+    font-size: 6.8pt;
+    color: #444;
+}
+
+.readings-title {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.8pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #111;
+    margin-bottom: 2px;
+}
+
+.reading-item {
+    margin-bottom: 2px;
+}
+
+.reading-item strong {
+    color: #111;
+}
+
+/* Mini-Glossário Cultural para Passatempos */
+.glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+    border-top: 1.5px solid #222;
+    padding-top: 6px;
+}
+
+.glossary-card {
+    border: 1px solid #dcd8ce;
+    background: #ffffff;
+    padding: 4px 6px;
+    border-left: 3px solid #8c2d19;
+}
+
+.glossary-term {
+    font-size: 7.5pt;
+    font-weight: 900;
+    color: #111;
+    text-transform: uppercase;
+}
+
+.glossary-cat {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6pt;
+    text-transform: uppercase;
+    color: #666;
+    font-weight: 700;
+}
+
+.glossary-def {
+    font-size: 6.8pt;
+    color: #333;
+    line-height: 1.25;
+    margin-top: 2px;
+}
+
+.glossary-etym {
+    font-size: 6.2pt;
+    font-style: italic;
+    color: #777;
+    margin-top: 1px;
+}
+

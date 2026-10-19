@@ -1,0 +1,27 @@
+# Ambientes Virtuais e Dependências
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Credenciais, Tokens e Variáveis de Ambiente Sensíveis
+.env
+*.env
+credentials.json
+token.json
+.myjournal_memory.json
+
+# Artefatos gerados (PDFs e HTMLs pesados de saída)
+output/*.pdf
+output/*.html
+output/images/
+!output/.gitkeep
+
+# macOS & IDE
+.DS_Store
+.vscode/
+.idea/
+.agents/
