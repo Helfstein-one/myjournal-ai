@@ -17,6 +17,7 @@ class Config:
     NEWSPAPER_SUBTITLE = os.getenv("NEWSPAPER_SUBTITLE", "Edição Semanal Dedicada ao Conhecimento, Cultura e Planejamento")
     OWNER_NAME = os.getenv("OWNER_NAME", "Mauricio")
     CITY = os.getenv("CITY", "São Paulo")
+    TARGET_EMAIL = os.getenv("TARGET_EMAIL", os.getenv("GMAIL_USER", "eloisa.emg22@gmail.com"))
 
     GOOGLE_CREDENTIALS_PATH = os.getenv("GOOGLE_CREDENTIALS_PATH", str(BASE_DIR / "credentials.json"))
     GOOGLE_TOKEN_PATH = os.getenv("GOOGLE_TOKEN_PATH", str(BASE_DIR / "token.json"))

@@ -86,12 +86,16 @@ class EmailSender:
             return False
 
         abs_pdf = str(Path(pdf_path).resolve())
+        safe_subject = subject.replace('\\', '\\\\').replace('"', '\\"')
+        safe_body = body_text.replace('\\', '\\\\').replace('"', '\\"')
+        safe_email = to_email.replace('\\', '\\\\').replace('"', '\\"')
+
         # Script AppleScript para compor e enviar pelo Mail.app nativo do Mac
         apple_script = f'''
         tell application "Mail"
-            set newMessage to make new outgoing message with properties {{subject:"{subject}", content:"{body_text}\n\n", visible:false}}
+            set newMessage to make new outgoing message with properties {{subject:"{safe_subject}", content:"{safe_body}\n\n", visible:false}}
             tell newMessage
-                make new to recipient at end of to recipients with properties {{address:"{to_email}"}}
+                make new to recipient at end of to recipients with properties {{address:"{safe_email}"}}
                 make new attachment with properties {{file name:"{abs_pdf}" as POSIX file}} at after the last paragraph
                 send
             end tell

@@ -20,7 +20,7 @@ def main():
     parser.add_argument("--mock", action="store_true", help="Usa agenda simulada sem exigir credenciais Google")
     parser.add_argument("--provider", choices=["gemini", "openai"], default=None, help="Provedor de IA")
     parser.add_argument("--output", type=str, default=None, help="Caminho do arquivo PDF de saída")
-    parser.add_argument("--email", type=str, default=None, help="E-mail de destino do PDF")
+    parser.add_argument("--email", nargs="?", const=Config.TARGET_EMAIL, default=None, help="E-mail de destino do PDF (padrão: Config.TARGET_EMAIL)")
     parser.add_argument("--owner", type=str, default=None, help="Nome do leitor/proprietário da edição")
     parser.add_argument("--calendar-pessoal", type=str, default=None, help="URL .ics do calendário pessoal")
     parser.add_argument("--calendar-trabalho", type=str, default=None, help="URL .ics do calendário profissional")
@@ -42,7 +42,7 @@ def main():
 
     # Gerenciamento de agendamento no sistema operacional
     if args.install_schedule:
-        target_email = args.email or "mhgdidi@gmail.com"
+        target_email = args.email or Config.TARGET_EMAIL
         LaunchAgentScheduler.install(email=target_email)
         return
 
@@ -130,12 +130,13 @@ def main():
             f"Sua nova edição semanal do {Config.NEWSPAPER_TITLE} acaba de ser impressa pela sua redação de IA.\n\n"
             f"Destaques da Edição:\n"
             f"• Capa: {journal_data.get('front_page', {}).get('lead_headline', '')}\n"
+            f"• Fatos Oficiais: Informes verificados do Brasil (EBC, IBGE) e Mundo (ONU News).\n"
             f"• Cultura & Joalheria: {journal_data.get('culture_history', {}).get('jewelry_history_article', {}).get('title', '')}\n"
             f"• Ofícios & Oportunidades: Conservação de Acervos, Alta Joalheria e Fatos de Ateliê.\n"
             f"• Gastronomia & Lazer SP: Roteiros culturais, Palavras Cruzadas (NYT) e Caça-Palavras temático.\n\n"
             f"O PDF oficial de 14 páginas está em anexo.\n\n"
             f"Boa leitura e excelente semana!\n"
-            f"— MyJournal AI Redação"
+            f"— {Config.NEWSPAPER_TITLE} Redação"
         )
         sent = EmailSender.send_via_gmail_api(args.email, subject, body, pdf_file)
         if not sent:
