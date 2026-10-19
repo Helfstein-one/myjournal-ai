@@ -6,6 +6,25 @@ O formato segue as diretrizes do [Keep a Changelog](https://keepachangelog.com/p
 
 ---
 
+## [2.1.0] - 2026-10-19
+
+### 🌐 Expansão de Fontes Oficiais & Imagens Reais (Brasil & Mundo)
+- **Ingestão Direta de Fontes de Estado & Diplomáticas:**
+  - Integração da **Agência Brasil (EBC)** e da **Agência Câmara** para monitoramento contínuo de atos de Estado, reformas e decretos.
+  - Ingestão via API oficial do **IBGE (Instituto Brasileiro de Geografia e Estatística)** para indicadores econômicos, demográficos e sociais em tempo real.
+  - Conexão oficial com a **ONU News (Português)** para cobertura multilateral, tratados e resoluções globais.
+- **Novas Seções Editoriais Estilo NYT:**
+  - **Página 4 (Brasil: Fatos de Estado):** Coluna lateral estilizada com filetes duplos clássicos e datelines em versalete (`BRASÍLIA • Agência Brasil`, `RIO DE JANEIRO • IBGE`).
+  - **Página 5 (The World in Brief):** Coluna de despachos rápidos com síntese diplomática (`GENEBRA • ONU News`, `NOVA YORK • Reuters`).
+  - **Página 10 (Painel Diplomático & Multilateral):** Seção aprofundada de acordos globais e resoluções da ONU.
+- **Motor Fotográfico com Imagens Reais:**
+  - `ImageCurator` atualizado para priorizar 100% fotografias autênticas de agências de notícias e do acervo documental de patrimônio histórico da Wikimedia Commons.
+  - Tratamento gráfico jornalístico de alto contraste P&B aplicado tanto na edição impressa (PDF) quanto na edição web responsiva.
+- **Auditoria Reforçada no Gatekeeper Editorial:**
+  - Nova regra de conformidade que audita e valida a proveniência e integridade das pílulas de fatos oficiais antes da liberação da edição.
+
+---
+
 ## [2.0.0] - 2026-10-19
 
 ### 🚀 Novas Funcionalidades & Arquitetura Editorial Multi-Agente

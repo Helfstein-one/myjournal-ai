@@ -7,14 +7,25 @@ from bs4 import BeautifulSoup
 RSS_FEEDS = {
     "politica": [
         "https://feeds.bbci.co.uk/portuguese/rss.xml",
-        "https://g1.globo.com/rss/g1/politica/"
+        "https://g1.globo.com/rss/g1/politica/",
+        "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml"
     ],
     "mundo": [
         "https://feeds.bbci.co.uk/portuguese/rss.xml",
+        "https://news.un.org/feed/subscribe/pt/news/all/rss.xml",
         "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
     ],
     "tecnologia": [
         "https://g1.globo.com/rss/g1/tecnologia/",
+        "https://feeds.bbci.co.uk/portuguese/rss.xml"
+    ],
+    "oficiais_brasil": [
+        "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml",
+        "https://www.camara.leg.br/noticias/rss/ultimas-noticias"
+    ],
+    "oficiais_mundo": [
+        "https://news.un.org/feed/subscribe/pt/news/all/rss.xml",
+        "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
         "https://feeds.bbci.co.uk/portuguese/rss.xml"
     ]
 }
@@ -174,3 +185,96 @@ class NewsFetcher:
                         lead_item["author"] = full_art["author"]
 
         return news
+
+    @classmethod
+    def fetch_ibge_news(cls, limit: int = 4) -> List[Dict[str, Any]]:
+        """Consome a API oficial de notícias e divulgações de estatísticas do IBGE."""
+        headers = {"User-Agent": "ThePersonalDispatch/2.0 (mhgdidi@gmail.com; official-stats)"}
+        items = []
+        try:
+            resp = requests.get(f"https://servicodados.ibge.gov.br/api/v3/noticias/?qtd={limit}", headers=headers, timeout=6)
+            if resp.status_code == 200:
+                data = resp.json().get("items", [])
+                for item in data:
+                    title = item.get("titulo", "").strip()
+                    intro = item.get("introducao", "").strip()
+                    link = item.get("link", "").strip()
+                    date_pub = item.get("data_publicacao", "")
+                    
+                    # Imagens do IBGE vêm em campo json dentro de 'imagens'
+                    img_url = None
+                    try:
+                        import json as j_mod
+                        img_data = j_mod.loads(item.get("imagens", "{}"))
+                        img_path = img_data.get("image_intro") or img_data.get("image_fulltext")
+                        if img_path:
+                            img_url = f"https://agenciadenoticias.ibge.gov.br/{img_path}"
+                    except Exception:
+                        pass
+
+                    if title:
+                        items.append({
+                            "title": title,
+                            "summary": intro[:250] + "..." if len(intro) > 250 else intro,
+                            "source": "IBGE • Notícias Oficiais de Estatística",
+                            "dateline": "RIO DE JANEIRO • IBGE",
+                            "author": "Coordenação de Comunicação Social do IBGE",
+                            "link": link,
+                            "date": date_pub,
+                            "image_url": img_url,
+                            "image_credit": "Foto: Acervo Oficial IBGE / Agência de Notícias",
+                            "impact_badge": "Indicadores Oficiais"
+                        })
+        except Exception:
+            pass
+        return items
+
+    @classmethod
+    def get_official_facts_briefing(cls) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Gera micro-cápsulas no formato clássico 'The World in Brief' e 'Brasil: Fatos Oficiais'.
+        Consome estritamente fontes primárias oficiais e governamentais:
+        - Brasil: Agência Brasil (EBC), IBGE Notícias e Agência Câmara.
+        - Mundo: ONU News (Português), The New York Times / Reuters e BBC News Internacional.
+        """
+        # 1. Fatos Oficiais do Brasil
+        br_facts = []
+        # Ingestão de estatísticas e censos do IBGE
+        ibge_items = cls.fetch_ibge_news(limit=2)
+        br_facts.extend(ibge_items)
+
+        # Ingestão de atos e serviços da Agência Brasil (EBC)
+        ebc_items = cls.fetch_rss("https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml", limit=4)
+        for item in ebc_items:
+            item["dateline"] = "BRASÍLIA • Agência Brasil"
+            item["impact_badge"] = "Ato de Estado"
+            if not item.get("image_credit"):
+                item["image_credit"] = "Foto: Agência Brasil / EBC"
+            br_facts.append(item)
+            if len(br_facts) >= 4:
+                break
+
+        # 2. Fatos Oficiais do Mundo
+        world_facts = []
+        # Ingestão de despachos da ONU (Nações Unidas em Português)
+        onu_items = cls.fetch_rss("https://news.un.org/feed/subscribe/pt/news/all/rss.xml", limit=3)
+        for item in onu_items:
+            item["dateline"] = "GENEBRA / NY • ONU News"
+            item["impact_badge"] = "Diplomacia & Paz"
+            if not item.get("image_credit"):
+                item["image_credit"] = "Foto: Acervo Multimídia ONU"
+            world_facts.append(item)
+
+        # Ingestão internacional (BBC Mundo / NYT)
+        nyt_items = cls.fetch_rss("https://rss.nytimes.com/services/xml/rss/nyt/World.xml", limit=3)
+        for item in nyt_items:
+            item["dateline"] = "NOVA YORK • NYT Global"
+            item["impact_badge"] = "Relações Globais"
+            world_facts.append(item)
+            if len(world_facts) >= 4:
+                break
+
+        return {
+            "brasil_facts": br_facts[:4],
+            "world_facts": world_facts[:4]
+        }

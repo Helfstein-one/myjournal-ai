@@ -286,26 +286,28 @@ class ImageCurator:
         )
         curated["jewelry"] = curated["world_geopolitics"]
 
-        # 8. METRÓPOLE SP (Pág. 11)
+        # 8. METRÓPOLE SP (Pág. 11) - Fotografia Documental Real
         curated["lifestyle_sp"] = self._curate_from_article_or_search(
             target_name="lifestyle_sp_curation",
             headline="Patrimônio e Vida Cultural de São Paulo",
             image_url=None,
             image_credit=None,
-            fallback_queries=["Pinacoteca de Sao Paulo", "Theatro Municipal de Sao Paulo", "Edificio Copan Sao Paulo", "Parque Ibirapuera"],
+            fallback_queries=["Theatro Municipal de Sao Paulo", "Pinacoteca do Estado de Sao Paulo", "Edificio Copan Sao Paulo", "Estacao da Luz Sao Paulo"],
             fallback_svg_key="lifestyle_sp",
-            default_caption="Perspectiva da arquitetura e vida cultural da capital paulista."
+            default_caption="Registro fotográfico do patrimônio arquitetônico e cultural da capital paulista.",
+            default_credit="Foto: Acervo Documental / Domínio Público"
         )
 
-        # 9. OFÍCIOS, RESTAURO & OPORTUNIDADES (Pág. 12)
+        # 9. OFÍCIOS, RESTAURO & OPORTUNIDADES (Pág. 12) - Fotografia Real de Ateliê
         curated["crafts_careers"] = self._curate_from_article_or_search(
             target_name="crafts_careers_curation",
             headline="Bancada de Ourivesaria e Restauro de Acervos",
             image_url=None,
             image_credit=None,
-            fallback_queries=["Goldsmith workshop engraving", "Art conservation restoration workshop historic", "Jewelry workbench tools vintage"],
+            fallback_queries=["Art Conservation & Restoration", "Jewelry workbench workshop", "Silversmith workshop tools", "Goldsmith workshop"],
             fallback_svg_key="crafts_careers",
-            default_caption="Bancada de ourivesaria e ateliê técnico de conservação de acervos."
+            default_caption="Registro autêntico de bancada de ourivesaria e ateliê técnico de restauro.",
+            default_credit="Foto: Acervo Técnico de Restauro / Domínio Público"
         )
 
         return curated

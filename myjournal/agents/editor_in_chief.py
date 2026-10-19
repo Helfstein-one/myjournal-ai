@@ -391,6 +391,8 @@ Gere o JSON completo da edição no formato:
         journal_data["politics_world"]["context_box"] = pol_result["politics"]["context_box"]
         journal_data["politics_world"]["recommended_readings"] = pol_result["politics"]["recommended_readings"]
         journal_data["politics_world"]["briefs"] = pol_result["politics"]["briefs"]
+        journal_data["politics_world"]["brasil_facts"] = pol_result["politics"].get("brasil_facts", [])
+        journal_data["politics_world"]["world_facts"] = pol_result["politics"].get("world_facts", [])
         journal_data["front_page"]["lead_headline"] = pol_result["politics"]["headline"]
 
         journal_data["tech_ai"]["headline"] = tech_result["headline"]
@@ -404,6 +406,7 @@ Gere o JSON completo da edição no formato:
         journal_data["sp_politics"] = sp_result
         journal_data["national_economy"] = eco_result
         journal_data["world_geopolitics"] = world_geo_result
+        journal_data["world_geopolitics"]["world_briefing"] = world_geo_result.get("world_briefing", [])
         journal_data["crafts_careers"] = careers_result
         journal_data["lifestyle_sp"] = lifestyle_result
 
@@ -483,6 +486,14 @@ Gere o JSON completo da edição no formato:
             checks.append(("Pág. 12 Concursos & Ofícios", True, "3 blocos verificados em tempo real (Editais/Bolsas SISEM-SP e DOE-SP, Acervos ProAC e Vagas Ativas de Ourivesaria/AJESP)"))
         else:
             checks.append(("Pág. 12 Concursos & Ofícios", False, "Oportunidades ou concursos incompletos"))
+
+        # 8. Briefing de Fatos Oficiais do Brasil & do Mundo (Agência Brasil, IBGE, ONU News)
+        br_facts = journal_data.get("politics_world", {}).get("brasil_facts", [])
+        world_facts = journal_data.get("world_geopolitics", {}).get("world_briefing", []) or journal_data.get("politics_world", {}).get("world_facts", [])
+        if br_facts and world_facts:
+            checks.append(("Fatos Oficiais (Brasil & Mundo)", True, f"{len(br_facts)} pílulas de Estado (Agência Brasil / IBGE) e {len(world_facts)} despachos multilaterais (ONU News / Reuters)"))
+        else:
+            checks.append(("Fatos Oficiais (Brasil & Mundo)", False, "Pílulas de fatos oficiais insuficientes"))
 
         all_passed = True
         for section, passed, detail in checks:

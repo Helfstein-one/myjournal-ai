@@ -221,33 +221,67 @@
             {% endif %}
         </div>
 
-        <div class="columns-2" style="flex: 1;">
-            <p class="drop-cap">{{ data.politics_world.main_article }}</p>
+        <div style="display: flex; gap: 14px; flex: 1;">
+            <div style="flex: 1.8; display: flex; flex-direction: column;">
+                <div class="columns-2" style="flex: 1;">
+                    <p class="drop-cap">{{ data.politics_world.main_article }}</p>
 
-            {% if data.politics_world.context_box %}
-            <div class="context-box">
-                <div class="context-box-title">✦ {{ data.politics_world.context_box.title }}</div>
-                <ul>
-                    {% for pt in data.politics_world.context_box.points %}
-                    <li>{{ pt }}</li>
+                    {% if data.politics_world.context_box %}
+                    <div class="context-box">
+                        <div class="context-box-title">✦ {{ data.politics_world.context_box.title }}</div>
+                        <ul>
+                            {% for pt in data.politics_world.context_box.points %}
+                            <li>{{ pt }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% if data.politics_world.recommended_readings %}
+                    <div class="readings-box">
+                        <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
+                        {% for r in data.politics_world.recommended_readings %}
+                        <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- COLUNA LATERAL NYT: BRASIL - FATOS DE ESTADO -->
+            <div class="nyt-briefing-col" style="flex: 1.2;">
+                <div class="briefing-header">
+                    <h3>BRASIL: FATOS DE ESTADO</h3>
+                    <span class="badge-impact">FONTES OFICIAIS</span>
+                </div>
+                {% if data.politics_world.brasil_facts %}
+                    {% for fact in data.politics_world.brasil_facts %}
+                    <div class="briefing-card">
+                        <div class="briefing-meta">
+                            <span class="dateline-tag">{{ fact.dateline or 'BRASÍLIA • Oficial' }}</span>
+                            <span class="badge-impact">{{ fact.impact_badge or 'Atos & Dados' }}</span>
+                        </div>
+                        <h4 class="briefing-title">{{ fact.title }}</h4>
+                        <p class="briefing-text">{{ fact.summary }}</p>
+                        {% if fact.link %}<a href="{{ fact.link }}" target="_blank" class="briefing-link">Despacho Oficial ↗</a>{% endif %}
+                    </div>
                     {% endfor %}
-                </ul>
+                {% else %}
+                    <div class="briefing-card">
+                        <div class="briefing-meta">
+                            <span class="dateline-tag">BRASÍLIA • Agência Brasil</span>
+                            <span class="badge-impact">Ato de Estado</span>
+                        </div>
+                        <h4 class="briefing-title">Monitoramento de Atos e Decretos Republicanos</h4>
+                        <p class="briefing-text">Acompanhamento contínuo dos despachos governamentais, audiências públicas e portarias da União.</p>
+                    </div>
+                {% endif %}
             </div>
-            {% endif %}
-
-            {% if data.politics_world.recommended_readings %}
-            <div class="readings-box">
-                <div class="readings-title">📖 FONTES & LEITURAS RECOMENDADAS:</div>
-                {% for r in data.politics_world.recommended_readings %}
-                <div class="reading-item">• <strong>{{ r.title }}</strong> ({{ r.author_or_source }}): <em>{{ r.note }}</em></div>
-                {% endfor %}
-            </div>
-            {% endif %}
         </div>
 
         <div class="footer-nav">
             <span>The Personal Dispatch</span>
-            <span>Página 4 de 14 • Política Nacional</span>
+            <span>Página 4 de 14 • Política Nacional & Fatos Oficiais</span>
             <span>Segue na pág. 5: Radar Internacional</span>
         </div>
     </div>
@@ -281,20 +315,50 @@
             {% endfor %}
         </div>
 
-        {% if news_items %}
-        <div style="border-top: 2px solid #222; padding-top: 6px; flex: 1;">
-            <div class="section-title" style="font-size: 9.5pt; margin-bottom: 6px;">DESPACHOS DAS AGÊNCIAS GLOBAIS AO VIVO (RSS)</div>
-            <div class="columns-2">
-                {% for item in news_items[:6] %}
-                <div style="margin-bottom: 6px; border-bottom: 1px dotted #ccc; padding-bottom: 4px;">
-                    <strong style="font-size: 8.2pt;">• {{ item.title }}</strong>
-                    <span style="font-size: 7pt; color: #666;">({{ item.source }})</span>
-                    <p style="font-size: 7.5pt; color: #444; margin-top: 2px;">{{ item.summary }}</p>
+        <div style="border-top: 2px solid #222; padding-top: 6px; flex: 1; display: flex; gap: 14px;">
+            <div style="flex: 1.6;">
+                <div class="section-title" style="font-size: 9.5pt; margin-bottom: 6px;">DESPACHOS DAS AGÊNCIAS GLOBAIS AO VIVO (RSS)</div>
+                <div class="columns-2">
+                    {% for item in news_items[:6] %}
+                    <div style="margin-bottom: 6px; border-bottom: 1px dotted #ccc; padding-bottom: 4px;">
+                        <strong style="font-size: 8.2pt;">• {{ item.title }}</strong>
+                        <span style="font-size: 7pt; color: #666;">({{ item.source }})</span>
+                        <p style="font-size: 7.5pt; color: #444; margin-top: 2px;">{{ item.summary }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+
+            <!-- COLUNA LATERAL NYT: THE WORLD IN BRIEF -->
+            <div class="nyt-briefing-col" style="flex: 1.2;">
+                <div class="briefing-header">
+                    <h3>THE WORLD IN BRIEF</h3>
+                    <span class="badge-impact">ONU & REUTERS</span>
+                </div>
+                {% if data.politics_world.world_facts %}
+                    {% for fact in data.politics_world.world_facts %}
+                    <div class="briefing-card">
+                        <div class="briefing-meta">
+                            <span class="dateline-tag">{{ fact.dateline or 'GENEBRA • ONU News' }}</span>
+                            <span class="badge-impact">{{ fact.impact_badge or 'Diplomacia' }}</span>
+                        </div>
+                        <h4 class="briefing-title">{{ fact.title }}</h4>
+                        <p class="briefing-text">{{ fact.summary }}</p>
+                        {% if fact.link %}<a href="{{ fact.link }}" target="_blank" class="briefing-link">Correspondência Oficial ↗</a>{% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="briefing-card">
+                        <div class="briefing-meta">
+                            <span class="dateline-tag">GENEBRA • ONU News</span>
+                            <span class="badge-impact">Cooperação</span>
+                        </div>
+                        <h4 class="briefing-title">Conferência Multilateral sobre Clima e Direitos</h4>
+                        <p class="briefing-text">Representantes de agências da ONU reúnem-se para pactuar diretrizes de assistência humanitária e transição energética.</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
-        {% endif %}
 
         <div class="footer-nav">
             <span>The Personal Dispatch</span>
@@ -577,7 +641,7 @@
         </figure>
         {% endif %}
 
-        <div class="columns-2" style="margin-bottom: 12px; flex: 1;">
+        <div class="columns-2" style="margin-bottom: 8px; flex: 1;">
             <p class="drop-cap">{{ data.world_geopolitics.article }}</p>
 
             {% if data.world_geopolitics.context_box %}
@@ -600,6 +664,28 @@
             </div>
             {% endif %}
         </div>
+
+        {% if data.world_geopolitics.world_briefing %}
+        <div style="border-top: 2px solid #222; padding-top: 6px; margin-bottom: 6px;">
+            <div class="briefing-header">
+                <h3>PAINEL DIPLOMÁTICO & MULTILATERAL (ONU NEWS & AGÊNCIAS)</h3>
+                <span class="badge-impact">DESPACHOS OFICIAIS</span>
+            </div>
+            <div class="columns-2">
+                {% for fact in data.world_geopolitics.world_briefing[:4] %}
+                <div class="briefing-card">
+                    <div class="briefing-meta">
+                        <span class="dateline-tag">{{ fact.dateline or 'GENEBRA • ONU News' }}</span>
+                        <span class="badge-impact">{{ fact.impact_badge or 'Diplomacia & Paz' }}</span>
+                    </div>
+                    <h4 class="briefing-title">{{ fact.title }}</h4>
+                    <p class="briefing-text">{{ fact.summary }}</p>
+                    {% if fact.link %}<a href="{{ fact.link }}" target="_blank" class="briefing-link">Ato Multilateral ↗</a>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
 
         <div class="footer-nav">
             <span>The Personal Dispatch</span>

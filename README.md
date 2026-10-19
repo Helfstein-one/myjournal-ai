@@ -24,8 +24,26 @@ O jornal abre com um diagnóstico de ritmo da semana integrado aos seus compromi
 
 ---
 
-### 2. Caderno de Tecnologia & Inteligência Artificial (Page 6)
-Análises aprofundadas sobre computação de ponta, impactos econômicos de chips e avanços de modelos generativos.
+### 2. Brasil: Fatos de Estado & Atos Republicanos (Page 4)
+Micro-cápsulas informativas baseadas estritamente em fontes oficiais de Estado (**Agência Brasil / EBC** e indicadores econômicos e demográficos do **IBGE**), com datelines em versalete no estilo clássico do NYT.
+
+<p align="center">
+  <img src="assets/images/preview_page4_brasil_facts.png" alt="Brasil Fatos de Estado" width="850">
+</p>
+
+---
+
+### 3. The World in Brief & Relações Internacionais (Page 5)
+Coluna lateral de despachos multilaterais oficiais (**ONU News em Português** e agências globais neutras), acompanhada de fotos documentais reais e monitoramento geopolítico ao vivo.
+
+<p align="center">
+  <img src="assets/images/preview_page5_world_in_brief.png" alt="The World in Brief" width="850">
+</p>
+
+---
+
+### 4. Caderno de Tecnologia & Inteligência Artificial (Page 6)
+Análises aprofundadas sobre computação de ponta, semicondutores, regulação de algoritmos e avanços de modelos generativos com fotos reais de laboratórios e processadores.
 
 <p align="center">
   <img src="assets/images/preview_page6_tech_ai.png" alt="Caderno de Tecnologia e IA" width="850">
@@ -33,8 +51,8 @@ Análises aprofundadas sobre computação de ponta, impactos econômicos de chip
 
 ---
 
-### 3. Metrópole SP & Gastronomia (Page 11)
-Roteiros paulistanos de arte, arquitetura e gastronomia com links clicáveis diretamente para o Google Maps.
+### 5. Metrópole SP & Gastronomia (Page 11)
+Roteiros paulistanos de arte, arquitetura e gastronomia com fotografia documental do patrimônio histórico e links diretos para o Google Maps.
 
 <p align="center">
   <img src="assets/images/preview_page11_lifestyle_sp.png" alt="Metrópole SP e Gastronomia" width="850">
@@ -42,7 +60,7 @@ Roteiros paulistanos de arte, arquitetura e gastronomia com links clicáveis dir
 
 ---
 
-### 4. Caderno de Jogos: The NYT Crossword & Caça-Palavras (Pages 13 & 14)
+### 6. Caderno de Jogos: The NYT Crossword & Caça-Palavras (Pages 13 & 14)
 Passatempos intelectuais gerados algoritmicamente a partir do vocabulário da própria edição. Na versão web, o caça-palavras e as palavras cruzadas são totalmente jogáveis em tempo real.
 
 <table align="center">
@@ -68,7 +86,8 @@ O jornal opera como uma redação jornalística contemporânea orquestrada por a
 flowchart TD
     subgraph Ingestão ["📥 Fontes & Ingestão de Dados"]
         GC[("Google Calendar / ICS<br>(Trabalho + Pessoal)")]
-        RSS[("Feeds RSS Globais<br>(BBC, G1, NYT, Reuters)")]
+        RSS[("Feeds RSS & APIs de Estado<br>(Agência Brasil, IBGE, ONU News, BBC, NYT)")]
+        FOTO[("Acervos Fotográficos Reais<br>(Agência Brasil, ONU, Wikimedia Commons)")]
         MEM[("Memória Histórica Anti-Repetição<br>(.myjournal_memory.json)")]
     end
 
@@ -85,7 +104,7 @@ flowchart TD
     end
 
     subgraph Produção ["🖨️ Produção Editorial & Saída"]
-        IMG["Image Curator<br>(Filtro P&B Alto Contraste)"]
+        IMG["Image Curator<br>(Fotos Reais + Filtro P&B Alto Contraste)"]
         PDF["PDF Generator<br>(Playwright Chromium A4)"]
         WEB["Interactive Web Reader<br>(HTML5 + CSS3 + JS)"]
         MAIL["Email Dispatcher<br>(Gmail API / Mail.app / SMTP)"]
@@ -95,6 +114,7 @@ flowchart TD
     RSS --> POL
     RSS --> ECO
     RSS --> TECH
+    FOTO --> IMG
     MEM <--> ED
 
     AG --> ED

@@ -84,6 +84,9 @@ class PoliticsWorldAgent:
                 {"title": "Inovação Tecnológica e Cadeias de Semicondutores", "text": "Acordos bilaterais reforçam a segurança de fornecimento de microchips de alta precisão entre Europa e Ásia."}
             ]
 
+        # 5. Coleta fatos oficiais de Estado (Agência Brasil, IBGE, ONU News)
+        facts_data = NewsFetcher.get_official_facts_briefing()
+
         return {
             "politics": {
                 "headline": lead_pol["title"].upper(),
@@ -107,7 +110,9 @@ class PoliticsWorldAgent:
                     {"title": "História Constitucional do Brasil", "author_or_source": "José Afonso da Silva", "note": "Fundamentos da separação dos poderes e legalidade administrativa."},
                     {"title": "Economia do Setor Público", "author_or_source": "Joseph Stiglitz", "note": "Análise da eficiência e do papel regulatório do Estado moderno."}
                 ],
-                "briefs": formatted_briefs
+                "briefs": formatted_briefs,
+                "brasil_facts": facts_data.get("brasil_facts", []),
+                "world_facts": facts_data.get("world_facts", [])
             },
             "lead_item": lead_pol
         }

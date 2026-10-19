@@ -57,6 +57,9 @@ class WorldGeopoliticsAgent:
                 ]
             }
 
+        # Coleta pílulas oficiais do mundo (ONU News, NYT/Reuters, BBC)
+        facts_data = NewsFetcher.get_official_facts_briefing()
+
         return {
             "headline": lead_world["title"].upper(),
             "byline": f"Por {lead_world['author']} • {lead_world['source']}",
@@ -79,5 +82,6 @@ class WorldGeopoliticsAgent:
                 {"title": "O Choque de Civilizações", "author_or_source": "Samuel P. Huntington", "note": "Análise das fraturas culturais e dos novos blocos geopolíticos globais."}
             ],
             "article": "\n\n".join(lead_world["paragraphs"][:4]),
+            "world_briefing": facts_data.get("world_facts", []),
             "lead_item": lead_world
         }

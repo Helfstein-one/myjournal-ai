@@ -787,3 +787,96 @@ p {
     margin-top: 1px;
 }
 
+/* Coluna Clássica NYT: The World in Brief & Fatos Oficiais */
+.nyt-briefing-col {
+    border-left: 3px double #222;
+    padding-left: 12px;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.briefing-header {
+    border-bottom: 2px solid #111;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.briefing-header h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 9pt;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin: 0;
+    color: #111;
+}
+
+.briefing-card {
+    border-bottom: 1px solid #dcd8ce;
+    padding-bottom: 6px;
+    margin-bottom: 2px;
+}
+
+.briefing-card:last-child {
+    border-bottom: none;
+}
+
+.briefing-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.dateline-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 6.5pt;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #8c2d19;
+}
+
+.badge-impact {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 5.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #e5e0d3;
+    color: #222;
+    padding: 1px 4px;
+    border-radius: 2px;
+    letter-spacing: 0.4px;
+}
+
+.briefing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 8pt;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 2px 0;
+    color: #111;
+}
+
+.briefing-text {
+    font-family: 'Lora', serif;
+    font-size: 7.2pt;
+    line-height: 1.3;
+    color: #333;
+    margin: 0;
+}
+
+.briefing-link {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 6.2pt;
+    color: #555;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 2px;
+}
+
