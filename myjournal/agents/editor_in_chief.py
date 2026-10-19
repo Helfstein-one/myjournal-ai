@@ -181,7 +181,7 @@ Gere o JSON completo da edição no formato:
       "author": "Por {Config.OWNER_NAME}",
       "provenance": {{
         "type": "author_column",
-        "source_name": "The Personal Dispatch",
+        "source_name": "{Config.NEWSPAPER_TITLE}",
         "author_name": "{Config.OWNER_NAME}",
         "url": ""
       }},

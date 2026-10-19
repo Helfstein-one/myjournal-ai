@@ -5,9 +5,10 @@ def get_mock_journal_content(owner_name: str = "Mauricio") -> Dict[str, Any]:
     today = datetime.now()
     week_str = f"Semana de {today.strftime('%d de %B de %Y')}"
     
+    from myjournal.config import Config
     return {
         "metadata": {
-            "title": "THE PERSONAL DISPATCH",
+            "title": Config.NEWSPAPER_TITLE,
             "subtitle": "Edição Semanal Dedicada ao Conhecimento, Cultura e Planejamento",
             "date_str": today.strftime("%A, %d de %B de %Y").capitalize(),
             "volume": "VOL. CLXXV... No. 60.420",
@@ -114,7 +115,7 @@ def get_mock_journal_content(owner_name: str = "Mauricio") -> Dict[str, Any]:
                 "author": f"Por {owner_name}",
                 "provenance": {
                     "type": "author_column",
-                    "source_name": "The Personal Dispatch",
+                    "source_name": "MY Journal",
                     "author_name": f"{owner_name}",
                     "url": ""
                 },

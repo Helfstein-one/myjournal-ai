@@ -150,7 +150,7 @@ class PuzzleArchitectAgent:
                     "category": "Léxico Cultural",
                     "difficulty": "Médio",
                     "definition": f"Conceito e vocábulo temático da edição dominical ({w.title()}).",
-                    "etymology": "Termo selecionado pela curadoria editorial do The Personal Dispatch."
+                    "etymology": "Termo selecionado pela curadoria editorial do MY Journal."
                 }
 
         result["glossary"] = enriched_glossary

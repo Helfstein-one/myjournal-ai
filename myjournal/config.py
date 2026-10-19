@@ -13,7 +13,7 @@ class Config:
     GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
     OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 
-    NEWSPAPER_TITLE = os.getenv("NEWSPAPER_TITLE", "THE PERSONAL DISPATCH")
+    NEWSPAPER_TITLE = os.getenv("NEWSPAPER_TITLE", "MY JOURNAL")
     NEWSPAPER_SUBTITLE = os.getenv("NEWSPAPER_SUBTITLE", "Edição Semanal Dedicada ao Conhecimento, Cultura e Planejamento")
     OWNER_NAME = os.getenv("OWNER_NAME", "Mauricio")
     CITY = os.getenv("CITY", "São Paulo")

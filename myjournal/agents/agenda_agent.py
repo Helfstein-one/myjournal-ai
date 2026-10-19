@@ -188,7 +188,7 @@ class AgendaIntelligenceAgent:
                             "location": ev["location"]
                         })
 
-                ai_prompt = f"""Você é o Estrategista de Produtividade e Ritmo de Vida do The Personal Dispatch (estilo The New York Times).
+                ai_prompt = f"""Você é o Estrategista de Produtividade e Ritmo de Vida do MY Journal (estilo The New York Times).
 Analise a agenda semanal do leitor e enriqueça cada dia e cada compromisso com precisão analítica e concisa.
 
 Compromissos estruturados da semana:

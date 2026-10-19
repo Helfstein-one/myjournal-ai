@@ -124,10 +124,10 @@ def main():
     # Despacho por e-mail se solicitado
     if args.email:
         print(f"\n[E-mail] 📬 Despachando edição para {args.email}...")
-        subject = f"📰 The Personal Dispatch — {journal_data.get('metadata', {}).get('date_str', 'Edição Semanal')}"
+        subject = f"📰 {Config.NEWSPAPER_TITLE} — {journal_data.get('metadata', {}).get('date_str', 'Edição Semanal')}"
         body = (
             f"Olá {Config.OWNER_NAME},\n\n"
-            f"Sua nova edição semanal do The Personal Dispatch acaba de ser impressa pela sua redação de IA.\n\n"
+            f"Sua nova edição semanal do {Config.NEWSPAPER_TITLE} acaba de ser impressa pela sua redação de IA.\n\n"
             f"Destaques da Edição:\n"
             f"• Capa: {journal_data.get('front_page', {}).get('lead_headline', '')}\n"
             f"• Cultura & Joalheria: {journal_data.get('culture_history', {}).get('jewelry_history_article', {}).get('title', '')}\n"

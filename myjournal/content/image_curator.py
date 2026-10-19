@@ -10,7 +10,7 @@ from myjournal.config import Config
 
 # SVG vintage engravings para fallback offline garantido
 VINTAGE_FALLBACKS = {
-    "front_page": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><rect width="800" height="450" fill="#f8f6f0"/><rect x="20" y="20" width="760" height="410" fill="none" stroke="#222" stroke-width="2"/><line x1="20" y1="40" x2="780" y2="40" stroke="#222" stroke-width="0.8"/><text x="400" y="210" font-family="Georgia, serif" font-size="28" font-style="italic" text-anchor="middle" fill="#222">The Personal Dispatch</text><text x="400" y="245" font-family="'Courier New', monospace" font-size="13" text-anchor="middle" fill="#666" letter-spacing="3">EDIÇÃO DOMINICAL • GRAVURA EDITORIAL</text><path d="M 250 280 L 550 280 M 320 290 L 480 290" stroke="#444" stroke-width="1"/></svg>""",
+    "front_page": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><rect width="800" height="450" fill="#f8f6f0"/><rect x="20" y="20" width="760" height="410" fill="none" stroke="#222" stroke-width="2"/><line x1="20" y1="40" x2="780" y2="40" stroke="#222" stroke-width="0.8"/><text x="400" y="210" font-family="Georgia, serif" font-size="28" font-style="italic" text-anchor="middle" fill="#222">MY Journal</text><text x="400" y="245" font-family="'Courier New', monospace" font-size="13" text-anchor="middle" fill="#666" letter-spacing="3">EDIÇÃO DOMINICAL • GRAVURA EDITORIAL</text><path d="M 250 280 L 550 280 M 320 290 L 480 290" stroke="#444" stroke-width="1"/></svg>""",
     "politics_national": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><rect width="800" height="450" fill="#f6f4ee"/><rect x="20" y="20" width="760" height="410" fill="none" stroke="#222" stroke-width="2"/><line x1="180" y1="330" x2="620" y2="330" stroke="#222" stroke-width="3"/><path d="M 220 330 L 220 210 L 360 210 L 360 330 M 440 330 L 440 210 L 580 210 L 580 330" stroke="#333" stroke-width="2" fill="none"/><path d="M 260 210 Q 300 150 340 210 M 460 210 Q 500 270 540 210" stroke="#333" stroke-width="2" fill="none"/><text x="400" y="380" font-family="Georgia, serif" font-size="14" font-style="italic" text-anchor="middle" fill="#333">Instituições Republicanas & Poder Nacional</text></svg>""",
     "international": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><rect width="800" height="450" fill="#f4f1ea"/><rect x="15" y="15" width="770" height="420" fill="none" stroke="#333" stroke-width="1.5"/><circle cx="400" cy="225" r="140" fill="none" stroke="#444" stroke-width="1" stroke-dasharray="4 2"/><ellipse cx="400" cy="225" rx="140" ry="60" fill="none" stroke="#555" stroke-width="1"/><line x1="400" y1="85" x2="400" y2="365" stroke="#555" stroke-width="1"/><text x="400" y="395" font-family="Georgia, serif" font-size="14" font-style="italic" text-anchor="middle" fill="#333">Panorama Geopolítico Global</text></svg>""",
     "tech_ai": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><rect width="800" height="450" fill="#f5f3ec"/><rect x="20" y="20" width="760" height="410" fill="none" stroke="#222" stroke-width="1.5"/><rect x="280" y="150" width="240" height="150" fill="none" stroke="#333" stroke-width="2"/><line x1="240" y1="225" x2="280" y2="225" stroke="#444" stroke-width="2"/><line x1="520" y1="225" x2="560" y2="225" stroke="#444" stroke-width="2"/><circle cx="400" cy="225" r="30" fill="none" stroke="#222" stroke-width="2"/><text x="400" y="380" font-family="Georgia, serif" font-size="14" font-style="italic" text-anchor="middle" fill="#333">Tecnologia, Inovação & Inteligência Artificial</text></svg>""",
@@ -25,7 +25,7 @@ class ImageCurator:
     def __init__(self):
         self.image_dir = Config.OUTPUT_DIR / "images"
         self.image_dir.mkdir(parents=True, exist_ok=True)
-        self.headers = {"User-Agent": "ThePersonalDispatch/2.0 (mhgdidi@gmail.com; news-aggregator)"}
+        self.headers = {"User-Agent": "MYJournal/2.0 (mhgdidi@gmail.com; news-aggregator)"}
 
     def _to_data_uri(self, content_bytes: bytes, mime_type: str = "image/jpeg") -> str:
         b64 = base64.b64encode(content_bytes).decode("utf-8")
@@ -96,7 +96,7 @@ class ImageCurator:
         fallback_queries: Optional[List[str]] = None,
         fallback_svg_key: str = "front_page",
         default_caption: str = "",
-        default_credit: str = "Arquivo Editorial / The Personal Dispatch"
+        default_credit: str = "Arquivo Editorial / MY Journal"
     ) -> Dict[str, str]:
         # 1. Foto real do artigo original
         if image_url and image_url.startswith("http"):
